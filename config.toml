@@ -1,0 +1,29 @@
+baseURL = "https://labs.ialhasan.com/"
+languageCode = "en-us"
+title = "My New Hugo Site"
+theme = "edyo"
+
+[params]
+# Warning Keys are case sensitives
+Subtitle = "Your subtitle !"
+description = "Everything is awesome !"
+cover = "/images/cover.jpg"
+
+# Google analytics
+googleAnalyticsUserID = "UA-xxxxxxxx-x"
+domainVerification = "xxxxxxxxxxxxxxxxxxxxx"
+disqus = "xxxxxxxxx"
+
+[params.author]
+firstName = "الحسن"
+lastName = "المشيخي"
+gender = "male"
+userName = "ialhasan"
+image = "https://secure.gravatar.com/avatar/7608fdcae8e48cd9925062b0edaa8ea6?size=300"
+website = "http://ialhasan.com/"
+twitter = "ialhasan"
+github = "https://github.com/iAlhasan/ialhasan.github.io"
+facebook = "xxxxxxxxx"
+linkedin = "xxxxxxxxx"
+gplus = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+gravatarHash = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
