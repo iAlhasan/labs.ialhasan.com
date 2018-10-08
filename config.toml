@@ -10,6 +10,6 @@ description = "مشاريع الحسن التقنية مفتوحة المصدر"
 # mainSections = "projects"
 cover = "/images/cover.jpg"
 github = "ialhasan"
-aboutme = "http://ialhasan.com"
+aboutme = "https://ialhasan.com"
 paginate = 1
 logo = "/images/labs.png"
