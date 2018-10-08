@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Amiri');
+
+body {
+    font-family: 'Amiri', sans-serif;
+    direction: rtl;
+}
+
+.jumbotron {
+    margin-top: 70px;
+}

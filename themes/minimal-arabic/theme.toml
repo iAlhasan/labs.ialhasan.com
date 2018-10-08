@@ -1,0 +1,22 @@
+name = "minimal-arabic"
+license = "MIT"
+licenselink = "https://github.com/iAlhasan/labs.ialhasan.com/blob/master/themes/minimal-arabic/LICENSE.md"
+description = "Based in Bleak Theme"
+homepage = "https://github.com/iAlhasan/labs.ialhasan.com/tree/master/themes/minimal-arabic/"
+tags = ["ghost", "minimal"]
+features = ["", ""]
+min_version = 0.15
+
+[author]
+name = "Alhasan Almashyakhi"
+homepage = "https://ialhasan.com"
+
+[originalAuthor]
+  name = "Eduardo Bellido Bellido"
+  homepage = "https://github.com/edubxb"
+
+# If porting an existing theme
+[original]
+  name = "Peter Amende"
+  homepage = "https://github.com/zutrinken"
+  repo = "https://github.com/zutrinken/bleak"

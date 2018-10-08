@@ -1,0 +1,29 @@
+{{ if .Params.featured }}
+<article class="post {{ .Section }} featured">
+{{ else }}
+<article class="post {{ .Section }}">
+{{ end }}
+	<div class="inner">
+        <a class="post-link" target="_blank" href="{{ .Site.BaseURL }}{{ .Params.link }}"></a>
+		{{ if .Params.image }}
+		<figure class="post-image">
+            <a target="_blank" href="{{ .Site.BaseURL }}{{ .Params.link }}"><img src="{{ .Site.BaseURL }}/images/{{ .Params.image }}" alt="" /></a>
+		</figure>
+		{{ end }}
+        {{ if .Params.lang }}
+        <h2 class="post-title" style="direction: rtl;"><a target="_blank" href="{{ .Site.BaseURL }}{{ .Params.link }}">{{ .Title }}</a></h2>
+        <p class="post-excerpt" style="direction: rtl;">{{ .Summary }}</p>
+        {{ else }}
+        <h2 class="post-title"><a target="_blank" href="{{ .Site.BaseURL }}{{ .Params.link }}">{{ .Title }}</a></h2>
+        <p class="post-excerpt">{{ .Summary }}</p>
+        {{ end }}
+<!--		<span class="post-meta">
+			<span class="post-date">{{ .Date.Format "2 Jan 2006" }}</span>
+		</span>
+-->
+
+<!--
+		<span class="post-more"><a href="{{ .Permalink }}">Read more <i class="fa fa-angle-right"></i></a></span>
+-->
+	</div>
+</article>

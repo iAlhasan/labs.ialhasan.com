@@ -3,7 +3,9 @@
 	{{if .paginator.HasPrev}}
     <a class="pagination-item pagination-next" href="{{ trim .site.BaseURL "/" }}{{ .paginator.Prev.URL }}"><i class="fa fa-chevron-left"></i> <span>Previous</span></a>
 	{{end}}
-		<span class="pagination-info">Page {{ .paginator.PageNumber }} of {{.paginator.TotalPages}}</span>
+    {{if (or .paginator.HasPrev .paginator.HasNext)}}
+		<span class="pagination-info">الصفحة {{ .paginator.PageNumber }} من {{.paginator.TotalPages}}</span>
+    {{end}}
 	{{if .paginator.HasNext}}
     <a class="pagination-item pagination-prev" href="{{ trim .site.BaseURL "/" }}{{ .paginator.Next.URL }}"><span>Next</span> <i class="fa fa-chevron-right"></i></a>
 	{{end}}
