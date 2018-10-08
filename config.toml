@@ -7,7 +7,6 @@ theme = "minimal-arabic"
 # Warning Keys are case sensitives
 Subtitle = "مشاريع الحسن التقنية مفتوحة المصدر"
 description = "مشاريع الحسن التقنية مفتوحة المصدر"
-# mainSections = "projects"
 cover = "/images/cover.jpg"
 # github = "ialhasan"
 aboutme = "https://ialhasan.com"
