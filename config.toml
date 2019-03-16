@@ -5,8 +5,8 @@ theme = "minimal-arabic"
 
 [params]
 # Warning Keys are case sensitives
-Subtitle = "مشاريع الحسن التقنية مفتوحة المصدر"
-description = "مشاريع الحسن التقنية مفتوحة المصدر"
+Subtitle = "مشاريع تقنية مفتوحة المصدر"
+description = "مشاريع تقنية مفتوحة المصدر"
 cover = "/images/cover.jpg"
 # github = "ialhasan"
 aboutme = "https://ialhasan.com"
