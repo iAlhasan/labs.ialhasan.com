@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css?family=Amiri');
+
+body {
+    background-color: #333;
+    color: #333;
+    font-family: 'Amiri', sans-serif;
+    font-weight: 400;
+    direction: rtl;
+}
+
+.jumbotron {
+    margin: 8% auto auto auto;
+}
+
+h1 {
+    margin: 5% 0 10% 0;
+    line-height: normal;
+}
+
+.col-sm-6 {
+    float: right;
+}
