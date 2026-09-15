@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    <meta property="og:title" content="{{ if ne .URL "/" }} {{ .Title }} &middot; {{ end }} {{ .Site.Title }}" />
+    <meta property="og:title" content="{{ if not .IsHome }} {{ .Title }} &middot; {{ end }} {{ .Site.Title }}" />
     <meta property="og:site_name" content="{{ .Site.Title }}" />
     <meta property="og:url" content="{{ .Permalink }}" />
 
@@ -29,7 +29,7 @@
     <meta property="og:type" content="website" />
     {{ end }}
 
-    <title>{{ if ne .URL "/" }} {{ .Title }} &middot; {{ end }} {{ .Site.Title }}</title>
+    <title>{{ if not .IsHome }} {{ .Title }} &middot; {{ end }} {{ .Site.Title }}</title>
 
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="preload" href="{{ .Site.BaseURL }}/js/main.js" as="script" />
@@ -62,13 +62,13 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    {{ if ne .URL "/" }}
+    {{ if not .IsHome }}
     <link href="{{ .Site.BaseURL }}index.xml" rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" />
     {{ end }}
 
-    {{if .IsNode}}
-    <link href="{{.RSSLink}}" rel="alternate" type="application/rss+xml" title="{{ if ne .URL "/" }}{{ .Title }} &middot; {{ end }}{{ .Site.Title }}" />
-    {{end}}
+    {{ with .OutputFormats.Get "RSS" }}
+    <link href="{{ .Permalink }}" rel="alternate" type="application/rss+xml" title="{{ if not $.IsHome }}{{ $.Title }} &middot; {{ end }}{{ $.Site.Title }}" />
+    {{ end }}
     <link rel="canonical" href="{{ .Permalink }}" />
 
     {{ if .IsPage }}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0">
+    <style>
+        body {
+            direction: rtl;
+            text-align: center;
+        }
+
+        input {
+            width: 270px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>كل عام وأنتم بخير</h1>
+    <h1>تخصيص بطاقة معايدة</h1>
+    <p>الاسم<br>
+        <input id="sender" type="text" maxlength="24" name="b" placeholder="الاسم" value="">
+    </p>
+    <p>
+        <button id="submit" type="button">إصدار البطاقة</button>
+    </p>
+</body>
+<script type="text/javascript">
+    document.getElementById("submit").onclick = function() {
+        location.href = "https://s.ialhasan.com/gift-cards/download_eid_card.php?a=" + document.getElementById('sender').value;
+    };
+</script>
+
+</html>
