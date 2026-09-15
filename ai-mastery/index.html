@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>إتقان الذكاء الاصطناعي — مسار تعلّم تفاعلي</title>
+    <meta
+      name="description"
+      content="مسار تفاعلي من ثماني وحدات: كيف يعمل الذكاء الاصطناعي، كيف تكتب برومبت محترفاً، الفرق بين الدفع والسحب، وكيف تبني برومبت ماستر خاصاً بك."
+    />
+    <link rel="icon" href="/labs.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <a
+      href="#m1"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:right-3 focus:z-50 focus:rounded-xl focus:bg-brand focus:px-4 focus:py-2 focus:text-white"
+      >تخطَّ إلى المحتوى</a
+    >
+
+    <!-- ============================ الشريط العلوي ============================ -->
+    <header
+      id="site-header"
+      class="no-print sticky top-0 z-40 border-b border-line bg-white/95 backdrop-blur-md"
+    >
+      <div class="shell flex h-16 items-center justify-between gap-4">
+        <a href="#top" class="flex items-center gap-2.5">
+          <img src="/labs.png" alt="" class="h-8 w-8 rounded-lg object-contain" />
+          <span class="text-[0.95rem] font-bold text-brand">معامل الحسن</span>
+        </a>
+
+        <nav class="hidden items-center gap-1 lg:flex" aria-label="وحدات المسار">
+          <a href="#m1" class="rounded-lg px-2.5 py-1.5 text-sm text-ink-soft hover:bg-surface hover:text-brand">الأساس</a>
+          <a href="#m2" class="rounded-lg px-2.5 py-1.5 text-sm text-ink-soft hover:bg-surface hover:text-brand">البرومبت</a>
+          <a href="#m4" class="rounded-lg px-2.5 py-1.5 text-sm text-ink-soft hover:bg-surface hover:text-brand">الدفع والسحب</a>
+          <a href="#m5" class="rounded-lg px-2.5 py-1.5 text-sm text-ink-soft hover:bg-surface hover:text-brand">برومبت الماستر</a>
+          <a href="#m7" class="rounded-lg px-2.5 py-1.5 text-sm text-ink-soft hover:bg-surface hover:text-brand">التحصين</a>
+        </nav>
+
+        <a href="#map" class="chip shrink-0 hover:border-brand-light hover:text-brand">
+          <span
+            class="inline-block h-2 w-2 rounded-full bg-brand-light"
+            aria-hidden="true"
+          ></span>
+          <span data-progress-label>0% · متعلّم مبتدئ</span>
+        </a>
+      </div>
+
+      <!-- شريط التقدم على الجوال -->
+      <div class="h-1 w-full bg-line lg:hidden" aria-hidden="true">
+        <div data-progress-bar class="h-full w-0 bg-brand transition-[width] duration-500"></div>
+      </div>
+    </header>
+
+    <!-- ========================== متتبع التقدم الجانبي ======================== -->
+    <aside
+      id="rail"
+      class="no-print fixed top-1/2 right-4 z-30 hidden -translate-y-1/2 lg:block"
+      aria-label="متتبع التقدم"
+    >
+      <ol data-rail class="flex flex-col gap-1"></ol>
+    </aside>
+
+    <main id="top">
+      <!-- ================================ المقدمة ============================= -->
+      <section class="relative overflow-hidden border-b border-line">
+        <div
+          class="pointer-events-none absolute -top-24 left-[-6rem] h-[28rem] w-[28rem] rounded-full bg-brand-light/10 blur-3xl"
+          aria-hidden="true"
+        ></div>
+
+        <div class="shell relative grid items-center gap-10 py-16 sm:py-24 lg:grid-cols-[1.15fr_1fr]">
+          <div>
+            <span class="eyebrow">مسار تفاعلي · 8 وحدات · 45 دقيقة</span>
+            <h1 class="text-4xl leading-[1.25] sm:text-5xl lg:text-[3.4rem]">
+              صدّق أو لا تصدّق،<br />
+              <span class="text-brand">أنت لست متأخراً</span> عن الذكاء الاصطناعي.
+            </h1>
+            <div class="prose-ar mt-5 text-lg">
+              <p>
+                الحقيقة أن أغلب الناس لا يعرفون كيف يستخدمونه جيداً حتى الآن. في نهاية
+                هذا المسار لن تكون قد «شاهدت» شيئاً، بل ستخرج ببرومبت ماستر خاص بك،
+                وبرومبت نظام جاهز، والتزام واحد تبدأ به غداً.
+              </p>
+            </div>
+
+            <div class="mt-7 flex flex-wrap items-center gap-3">
+              <button type="button" class="btn-primary" data-start-journey>
+                ابدأ الرحلة
+              </button>
+              <a href="#map" class="btn-ghost">شاهد خريطة المسار</a>
+            </div>
+
+            <p class="mt-5 text-sm text-ink-soft">
+              تقدّمك يُحفظ في متصفحك وحده — لا حساب، ولا تسجيل، ولا يغادر جهازك.
+            </p>
+          </div>
+
+          <!-- رسم توضيحي: تدفق الرموز -->
+          <div class="hidden lg:block" aria-hidden="true">
+            <svg viewBox="0 0 360 300" class="w-full" role="presentation">
+              <defs>
+                <linearGradient id="flow" x1="1" y1="0" x2="0" y2="0">
+                  <stop offset="0%" stop-color="#4F9688" stop-opacity="0.85" />
+                  <stop offset="100%" stop-color="#3F6E67" stop-opacity="0.15" />
+                </linearGradient>
+              </defs>
+              <g fill="none" stroke="url(#flow)" stroke-width="1.5">
+                <path d="M350 40 C 250 60, 220 120, 120 150" />
+                <path d="M350 100 C 260 110, 210 140, 120 150" />
+                <path d="M350 160 C 260 160, 210 155, 120 150" />
+                <path d="M350 220 C 260 210, 210 175, 120 150" />
+                <path d="M350 280 C 250 250, 220 185, 120 150" />
+              </g>
+              <g>
+                <circle cx="120" cy="150" r="34" fill="#3F6E67" />
+                <circle cx="120" cy="150" r="48" fill="none" stroke="#4F9688" stroke-opacity="0.35" />
+                <circle cx="120" cy="150" r="62" fill="none" stroke="#4F9688" stroke-opacity="0.18" />
+              </g>
+              <g fill="#4F9688">
+                <circle cx="350" cy="40" r="5" />
+                <circle cx="350" cy="100" r="5" />
+                <circle cx="350" cy="160" r="5" />
+                <circle cx="350" cy="220" r="5" />
+                <circle cx="350" cy="280" r="5" />
+              </g>
+              <g fill="#244C44">
+                <rect x="10" y="132" width="52" height="16" rx="8" opacity="0.85" />
+                <rect x="10" y="158" width="34" height="16" rx="8" opacity="0.5" />
+                <rect x="10" y="106" width="44" height="16" rx="8" opacity="0.65" />
+              </g>
+            </svg>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================ خريطة المسار ============================ -->
+      <section id="map" class="scroll-mt-24 bg-surface py-14">
+        <div class="shell">
+          <h2 class="text-2xl sm:text-3xl">خريطة المسار</h2>
+          <p class="mt-2 text-ink-soft">
+            كل وحدة تنتهي بتمرين عملي. أنجِز التمرين ليُحتسب تقدّمك.
+          </p>
+          <ol
+            data-map
+            class="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-4"
+          ></ol>
+        </div>
+      </section>
+
+      <!-- ============================== الوحدة 1 ============================== -->
+      <section id="m1" class="module" data-module="m1">
+        <div class="shell">
+          <span class="eyebrow">الوحدة 1 · الأساس</span>
+          <h2 class="text-3xl sm:text-4xl">كيف يعمل الذكاء الاصطناعي فعلاً؟</h2>
+          <div class="prose-ar mt-4">
+            <p>
+              تخيّل أن كل ما كتبه البشر — مقالات، كتب، نقاشات، نصوص مقاطع — جُمع ثم
+              فُتّت إلى قطع صغيرة تُسمّى «الرموز». بعدها تعلّم النموذج شيئاً واحداً
+              فقط: ما الرمز الأرجح بعد هذا الرمز؟
+            </p>
+            <p>
+              حين تقول «طلع البدر…» يكمل عقلك تلقائياً: «علينا». هذا بالضبط ما يفعله
+              النموذج، لكن على مستوى كل ما كُتب. ولهذا فإن جودة ما تعطيه تحدّد جودة ما
+              يعطيك: من يملك تفاصيل القصة كاملة يجيب عن السؤال بدقة، ومن يسمع جملة
+              واحدة يخمّن.
+            </p>
+            <p class="font-medium text-ink">
+              الذكاء الاصطناعي ليس سحراً. إنه تمييز أنماط يرتدي بدلة أنيقة.
+            </p>
+          </div>
+          <div data-mount="tokenizer" class="mt-8"></div>
+        </div>
+      </section>
+
+      <!-- ============================== الوحدة 2 ============================== -->
+      <section id="m2" class="module module-tinted" data-module="m2">
+        <div class="shell">
+          <span class="eyebrow">الوحدة 2 · الأساسيات</span>
+          <h2 class="text-3xl sm:text-4xl">تشريح البرومبت: أربعة أجزاء لا خامس لها</h2>
+          <div class="prose-ar mt-4">
+            <p>
+              أغلب الناس يرسلون «رسالة نصية» قصيرة ثم ينتظرون معجزة. بينما تستطيع أن
+              تعطي النموذج ما يعادل كتابين من المعلومات قبل أن يجيبك أصلاً.
+            </p>
+            <p>
+              البرومبت المحترف أربعة أجزاء: <strong class="text-ink">الدور</strong> تخبره
+              من يكون، <strong class="text-ink">السياق</strong> تعطيه كل الخلفية،
+              <strong class="text-ink">الأمر</strong> تحدد بدقة ما تريده، و<strong
+                class="text-ink"
+                >الصيغة</strong
+              >
+              تحدد شكل المخرج حتى تستطيع استخدامه مباشرة.
+            </p>
+            <p class="font-medium text-ink">
+              جودة المخرج لن تتجاوز أبداً جودة المدخل.
+            </p>
+          </div>
+          <div data-mount="anatomy" class="mt-8"></div>
+        </div>
+      </section>
+
+      <!-- ============================== الوحدة 3 ============================== -->
+      <section id="m3" class="module" data-module="m3">
+        <div class="shell">
+          <span class="eyebrow">الوحدة 3 · الأساسيات</span>
+          <h2 class="text-3xl sm:text-4xl">اختر أداة واحدة، وأتقنها</h2>
+          <div class="prose-ar mt-4">
+            <p>
+              تعلّم الذكاء الاصطناعي يشبه تعلّم آلة موسيقية. لو وزّعت وقتك بين البيانو
+              والجيتار والطبول في وقت واحد فلن تتقن أياً منها. لكن إذا أتقنت واحدة،
+              صارت البقية سهلة لأنك فهمت الموسيقى نفسها.
+            </p>
+            <p>
+              من يقفز بين الأدوات كل أسبوع لا يتعلّم، بل يؤجّل. المتقنون يتعمّقون قبل
+              أن يتوسّعوا.
+            </p>
+          </div>
+          <div data-mount="tool-matcher" class="mt-8"></div>
+        </div>
+      </section>
+
+      <!-- ========================== فاصل: من الأساس للإتقان ==================== -->
+      <section class="band-dark py-14">
+        <div class="shell text-center">
+          <p class="mx-auto max-w-2xl text-xl leading-relaxed sm:text-2xl">
+            «إذا وصلت إلى هنا فأنت ضمن أفضل 10% من مستخدمي الذكاء الاصطناعي.
+            ما تبقّى هو ما ينقل الناس إلى أفضل 1%.»
+          </p>
+        </div>
+      </section>
+
+      <!-- ============================== الوحدة 4 ============================== -->
+      <section id="m4" class="module" data-module="m4">
+        <div class="shell">
+          <span class="eyebrow">الوحدة 4 · الإتقان</span>
+          <h2 class="text-3xl sm:text-4xl">الدفع مقابل السحب</h2>
+          <div class="prose-ar mt-4">
+            <p>
+              أغلب الناس يستخدمون الذكاء الاصطناعي بالطريقة الصعبة: ينجزون 80% من
+              التفكير بأنفسهم، ثم يتركون له آخر 20%. هذا هو «الدفع» — أن تملي عليه
+              الطريقة خطوة بخطوة.
+            </p>
+            <p>
+              «السحب» عكسه تماماً: تبدأ من النتيجة النهائية، وتترك له اكتشاف الطريق.
+              الدفع يشبه صديقاً يصف لك الطريق: «انعطف يميناً بعد المسجد ثم يساراً عند
+              الصيدلية». والسحب يشبه الملاحة: تعطيه الوجهة فيتولّى هو الطريق.
+            </p>
+            <p>
+              وصفة السحب ثلاثة أجزاء: الدور والسياق، ثم الهدف النهائي، ثم الجملة التي
+              تغيّر كل شيء: «اسألني كل الأسئلة التي تحتاجها، ثم أعطني النتيجة في جدول».
+            </p>
+          </div>
+          <div data-mount="quiz" class="mt-8"></div>
+        </div>
+      </section>
+
+      <!-- ============================== الوحدة 5 ============================== -->
+      <section id="m5" class="module module-tinted" data-module="m5">
+        <div class="shell">
+          <span class="eyebrow">الوحدة 5 · الإتقان</span>
+          <h2 class="text-3xl sm:text-4xl">برومبت الماستر: عرّفه بنفسك مرة واحدة</h2>
+          <div class="prose-ar mt-4">
+            <p>
+              فكّر في برومبت الماستر كدليل مكتوب عن جزء من حياتك. لو كان هناك ملف
+              اسمه «أنا بصفتي مديراً» أو «أنا بصفتي أباً» — ماذا سيحتوي؟ من حولك، ما
+              تبيعه، كيف تُتخذ القرارات، ما الذي يجب تجنّبه.
+            </p>
+            <p>
+              إن كان المخرج الذي يعطيك إياه الذكاء الاصطناعي يصلح لأي شخص آخر، فالسبب
+              أنك لم تعرّفه بنفسك بعد. تكتبه مرة واحدة، ثم ترفعه في أي أداة تنتقل
+              إليها، فينتقل معك السياق كاملاً.
+            </p>
+            <p class="font-medium text-ink">
+              هذا التمرين نفسه تطبيق مباشر لطريقة السحب: أنت تطلب، وهو يسألك.
+            </p>
+          </div>
+          <div data-mount="master-prompt" class="mt-8"></div>
+        </div>
+      </section>
+
+      <!-- ============================== الوحدة 6 ============================== -->
+      <section id="m6" class="module" data-module="m6">
+        <div class="shell">
+          <span class="eyebrow">الوحدة 6 · الإتقان</span>
+          <h2 class="text-3xl sm:text-4xl">برومبت النظام: اجعل النتيجة الجيدة تتكرر</h2>
+          <div class="prose-ar mt-4">
+            <p>
+              برومبت النظام وصفة طبخ. المكوّنات مهمة، لكن الترتيب هو ما يقرر إن كنت
+              ستحصل على كعكة أم على كومة عجين. حين تصل بعد سبع عشرة محاولة إلى مخرج
+              ممتاز، السؤال الصحيح ليس «ما أجمله!» بل «كيف أجعله يتكرر دون كل هذا
+              العناء؟».
+            </p>
+            <p>
+              حين يستقر لديك، انسخه داخل مشروع أو أداة مخصصة، وصار لديك آلة صغيرة
+              تعمل لك بلا تعليمات جديدة في كل مرة — يستخدمها فريقك دون أن يفهم
+              تعقيدات الذكاء الاصطناعي أصلاً.
+            </p>
+          </div>
+          <div data-mount="system-prompt" class="mt-8"></div>
+        </div>
+      </section>
+
+      <!-- ============================== الوحدة 7 ============================== -->
+      <section id="m7" class="module module-tinted" data-module="m7">
+        <div class="shell">
+          <span class="eyebrow">الوحدة 7 · التحصين</span>
+          <h2 class="text-3xl sm:text-4xl">حصّن نفسك: الذوق والرؤية والاهتمام</h2>
+          <div class="prose-ar mt-4">
+            <p>
+              ثلاثة أشياء يصعب على الآلة أن تنتزعها منك.
+              <strong class="text-ink">الذوق</strong>: أن تميّز الممتاز من الجيد وتشرح
+              لماذا. <strong class="text-ink">الرؤية</strong>: أن ترى ما لا وجود له بعد
+              ويجب أن يوجد. <strong class="text-ink">الاهتمام</strong>: أن تهتم بالناس
+              اهتماماً حقيقياً.
+            </p>
+            <p>
+              الآلات تحسّن ما هو موجود، أما البشر فيتخيّلون ما ليس موجوداً. الذوق يُبنى
+              بالانغماس في الامتياز حتى يتشرّبه نظرك، والرؤية تُبنى بوقت مخصص للتفكير لا
+              للتنفيذ، والاهتمام يُبنى حين تسلّم المهام المملة للآلة وتستعيد وقتك
+              للناس.
+            </p>
+          </div>
+          <div data-mount="pillars" class="mt-8"></div>
+        </div>
+      </section>
+
+      <!-- ====================== الوحدة 8 · بطاقة الالتزام ===================== -->
+      <section id="m8" class="module band-dark border-t-0" data-module="m8">
+        <div class="shell">
+          <span class="eyebrow">الوحدة 8 · الفعل</span>
+          <h2 class="text-3xl sm:text-4xl">عشر دقائق من الفعل</h2>
+          <div class="prose-ar mt-4">
+            <p>
+              أغلب الشركات الصغيرة لم تبدأ بعد باستخدام الذكاء الاصطناعي بشكل حقيقي،
+              وهذا يعني أنك ما زلت مبكراً. اختر مهمة واحدة تتكرر عليك يومياً وسلّمها
+              للذكاء الاصطناعي. عشر دقائق من التطبيق تتفوّق على عشر ساعات من المشاهدة.
+            </p>
+          </div>
+          <div data-mount="commitment" class="mt-8"></div>
+        </div>
+      </section>
+
+      <!-- ============================== المخرجات ============================== -->
+      <section id="exports" class="scroll-mt-24 border-t border-line py-16">
+        <div class="shell">
+          <h2 class="text-2xl sm:text-3xl">ما ستخرج به من هذا المسار</h2>
+          <p class="mt-2 text-ink-soft">
+            ثلاثة ملفات ملموسة. احتفظ بها واستخدمها في أي أداة تنتقل إليها.
+          </p>
+          <div data-mount="exports" class="mt-7"></div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ================================ التذييل =============================== -->
+    <footer class="no-print border-t border-line bg-surface py-10">
+      <div class="shell flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
+        <div class="flex items-center gap-3">
+          <img src="/labs.png" alt="" class="h-9 w-9 rounded-lg object-contain" />
+          <div>
+            <p class="font-bold text-brand">معامل الحسن</p>
+            <p class="text-sm text-ink-soft">مشاريع تقنية مفتوحة المصدر</p>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-3">
+          <a href="https://ialhasan.com" class="btn-ghost btn-sm" rel="noopener">
+            ialhasan.com
+          </a>
+          <button type="button" class="btn-ghost btn-sm" data-reset-progress>
+            إعادة ضبط التقدم
+          </button>
+        </div>
+      </div>
+      <div class="shell mt-6">
+        <p class="max-w-3xl text-sm leading-relaxed text-ink-soft">
+          محتوى تعليمي مجاني. جميع التمارين تعمل داخل متصفحك دون اتصال بأي خدمة
+          خارجية، ولا تُرسل أي بيانات إلى أي خادم.
+        </p>
+      </div>
+    </footer>
+
+    <!-- منطقة إعلان للقارئات الشاشية -->
+    <div data-live class="sr-only" aria-live="polite" role="status"></div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

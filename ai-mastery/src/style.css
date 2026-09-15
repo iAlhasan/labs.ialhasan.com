@@ -1,0 +1,223 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   نظام التصميم — معامل الحسن / إتقان الذكاء الاصطناعي
+   لوحة الألوان الأساسية كما هي دون أي تغيير:
+   #3F6E67 أساسي · #244C44 داكن · #4F9688 فاتح · #2C4948 نص · #FFFFFF خلفية
+   ========================================================================== */
+@theme {
+  --color-brand: #3f6e67; /* 5.8:1 على الأبيض — آمن للنصوص */
+  --color-brand-dark: #244c44; /* 9.6:1 مقلوباً — الأشرطة الداكنة */
+  --color-brand-light: #4f9688; /* 3.5:1 — حدود وأيقونات وتعبئة فقط */
+  --color-brand-ink: #42806f; /* 4.6:1 — بديل آمن للنص مشتق من الفاتح */
+  --color-ink: #2c4948; /* 9.8:1 — نص الجسم */
+  --color-ink-soft: #55706e; /* 4.9:1 — نص ثانوي */
+  --color-surface: #f4f8f7; /* سطح البطاقات */
+  --color-line: #e3edeb; /* حدود شعرية */
+  --color-correct: #3f6e67; /* الصحيح = الأساسي */
+  --color-wrong: #b4553f; /* 4.9:1 — تيراكوتا هادئة وآمنة لعمى الألوان */
+  --color-warn: #c98a2e; /* تعبئة وأيقونات فقط */
+
+  --font-sans: "Tajawal", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --radius-card: 1rem;
+  --ease-soft: cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
+  }
+
+  body {
+    @apply bg-white font-sans text-[1.0625rem] leading-[1.85] text-ink antialiased;
+    font-feature-settings: "lnum" 1; /* أرقام لاتينية في كل الموقع */
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-bold leading-[1.35];
+    text-wrap: balance;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-brand;
+  }
+
+  ::selection {
+    @apply bg-brand-light/25;
+  }
+}
+
+/* جزيرة نص لاتيني داخل سياق عربي (أسماء الأدوات، الامتدادات) */
+.ltr {
+  direction: ltr;
+  unicode-bidi: isolate;
+  display: inline-block;
+}
+
+/* ---------------------------------- التخطيط --------------------------------- */
+.shell {
+  @apply mx-auto w-full max-w-5xl px-5 sm:px-8;
+}
+
+.module {
+  @apply scroll-mt-24 border-t border-line py-16 sm:py-20;
+}
+
+.module-tinted {
+  @apply bg-surface;
+}
+
+.band-dark {
+  @apply bg-brand-dark text-white;
+}
+
+.eyebrow {
+  @apply mb-3 inline-flex items-center gap-2 rounded-full border border-line bg-surface px-3 py-1 text-sm font-medium text-brand;
+}
+
+.band-dark .eyebrow {
+  @apply border-white/20 bg-white/10 text-white;
+}
+
+.prose-ar p {
+  @apply mb-4 max-w-[62ch] text-ink-soft;
+}
+
+.band-dark .prose-ar p {
+  @apply text-white/80;
+}
+
+/* ---------------------------------- البطاقات -------------------------------- */
+.card {
+  @apply rounded-card border border-line bg-white p-5 sm:p-6;
+}
+
+.card-soft {
+  @apply rounded-card border border-line bg-surface p-5 sm:p-6;
+}
+
+.band-dark .card {
+  @apply border-white/15 bg-white/5;
+}
+
+/* ---------------------------------- الأزرار --------------------------------- */
+.btn,
+.btn-primary,
+.btn-ghost,
+.choice {
+  @apply inline-flex cursor-pointer items-center justify-center gap-2 rounded-xl px-5 py-2.5 text-[0.95rem] font-medium transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-45;
+  transition-timing-function: var(--ease-soft);
+}
+
+.btn-primary {
+  @apply bg-brand text-white hover:bg-brand-dark;
+}
+
+.btn-ghost {
+  @apply border border-line bg-white text-brand hover:border-brand-light hover:bg-surface;
+}
+
+.band-dark .btn-ghost {
+  @apply border-white/25 bg-transparent text-white hover:border-white/60 hover:bg-white/10;
+}
+
+.btn-sm {
+  @apply px-3.5 py-1.5 text-sm;
+}
+
+/* --------------------------- الخيارات القابلة للنقر -------------------------- */
+.choice {
+  @apply w-full justify-start border border-line bg-white text-start font-normal leading-relaxed text-ink hover:border-brand-light hover:bg-surface;
+}
+
+.choice[aria-pressed="true"] {
+  @apply border-brand bg-brand/8 font-medium text-brand;
+}
+
+.choice.is-correct {
+  @apply border-correct bg-correct/10 font-medium text-correct;
+}
+
+.choice.is-wrong {
+  @apply border-wrong bg-wrong/10 font-medium text-wrong;
+}
+
+.choice:disabled {
+  @apply cursor-default opacity-100;
+}
+
+/* ---------------------------------- الحقول ---------------------------------- */
+.field {
+  @apply w-full rounded-xl border border-line bg-white px-4 py-3 text-ink placeholder:text-ink-soft/70 focus:border-brand focus:outline-none;
+}
+
+/* ------------------------------ شارات ومقاييس ------------------------------- */
+.chip {
+  @apply inline-flex items-center gap-1.5 rounded-full border border-line bg-white px-3 py-1 text-sm text-ink-soft;
+}
+
+.meter {
+  @apply h-2 w-full overflow-hidden rounded-full bg-line;
+}
+
+.meter > span {
+  @apply block h-full rounded-full bg-brand transition-[width] duration-500;
+  transition-timing-function: var(--ease-soft);
+}
+
+/* --------------------------------- الحركة ---------------------------------- */
+.fade-in {
+  animation: fade-in 0.35s var(--ease-soft) both;
+}
+
+.pop-in {
+  animation: pop-in 0.3s var(--ease-soft) both;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* --------------------------------- الطباعة --------------------------------- */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
