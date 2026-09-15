@@ -1,0 +1,17 @@
+{
+  "name": "ai-mastery",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "منصة تعليمية تفاعلية لإتقان الذكاء الاصطناعي — تُبنى إلى static/ai-mastery ليقدّمها Hugo على /ai-mastery/",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "tailwindcss": "^4.3.3",
+    "vite": "^8.3.0"
+  }
+}
