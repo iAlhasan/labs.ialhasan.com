@@ -479,6 +479,42 @@ textarea { resize: vertical; min-height: 84px; }
 .board-summary { margin-top: 16px; font-weight: 600; }
 .board-summary[hidden] { display: none; }
 
+/* ===== متنبّئ الكلمة التالية ===== */
+.predict-phrases { display: flex; flex-wrap: wrap; gap: 10px; margin: 12px 0 16px; }
+.predict-phrase[aria-pressed="true"] { background: var(--sakan-green); border-color: var(--sakan-green); color: #FFFFFF; }
+:root[data-theme="dark"] .predict-phrase[aria-pressed="true"] { background: var(--sakan-teal); border-color: var(--sakan-teal); color: #17403A; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .predict-phrase[aria-pressed="true"] { background: var(--sakan-teal); border-color: var(--sakan-teal); color: #17403A; } }
+.predict-sentence { font-size: 24px; font-weight: 700; color: var(--heading); margin: 0 0 12px; }
+.predict-sentence .next { border-bottom: 4px solid var(--sakan-orange); padding: 0 4px; }
+.predict-bars { display: grid; gap: 8px; }
+.predict-row { display: grid; grid-template-columns: 90px 1fr 56px; gap: 10px; align-items: center; }
+.predict-row .word { font-weight: 600; }
+.predict-row .bar { height: 18px; border-radius: 6px; background: var(--surface-2); overflow: hidden; border: 1px solid var(--border); }
+.predict-row .bar > span { display: block; height: 100%; background: var(--sakan-teal); transition: width .5s; }
+.predict-row:first-child .bar > span { background: var(--sakan-green); }
+:root[data-theme="dark"] .predict-row:first-child .bar > span { background: var(--sakan-orange); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .predict-row:first-child .bar > span { background: var(--sakan-orange); } }
+.predict-row .pct { font-variant-numeric: tabular-nums; font-weight: 600; direction: ltr; text-align: end; }
+.quote-line { font-size: 21px; font-weight: 600; color: var(--heading); border-inline-start: 6px solid var(--sakan-orange); padding: 4px 16px; margin: 20px 0 0; }
+
+/* ===== من الاستخدام إلى الإتقان ===== */
+.sub-block { margin-top: 44px; }
+.sub-block > h3 { display: flex; align-items: center; gap: 10px; font-size: 28px; }
+.compare-pp { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.pp-label { display: inline-block; font-size: 19px; font-weight: 700; padding: 2px 14px; border-radius: 999px; margin-bottom: 8px; }
+.pp-label.push { background: var(--surface-2); color: var(--text); border: 2px solid var(--card-gray); }
+.pp-label.pull { background: var(--sakan-green); color: #FFFFFF; }
+:root[data-theme="dark"] .pp-label.pull { background: var(--sakan-teal); color: #17403A; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .pp-label.pull { background: var(--sakan-teal); color: #17403A; } }
+.recipe { list-style: none; padding: 0; margin: 16px 0 0; display: grid; gap: 10px; }
+.recipe li { display: flex; gap: 12px; align-items: center; margin: 0; padding: 10px 14px; border-radius: 10px; background: var(--surface-2); font-weight: 500; }
+.pp-quiz { display: grid; gap: 16px; grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 18px; }
+.pillar { text-align: start; }
+.pillar .pillar-icon { font-size: 40px; font-weight: 700; color: var(--sakan-orange); line-height: 1; }
+.credit { font-size: 16px; color: var(--muted); margin: 0 0 20px; }
+.check-row { display: flex; align-items: center; gap: 10px; margin-top: 14px; font-weight: 600; cursor: pointer; }
+.check-row input { width: 22px; height: 22px; accent-color: #17403A; flex: none; }
+
 /* ===== المؤقتات الكبيرة ===== */
 .big-timer {
   font-size: clamp(80px, 16vw, 168px); font-weight: 700; line-height: 1.1; color: #FFFFFF;
@@ -490,12 +526,6 @@ textarea { resize: vertical; min-height: 84px; }
 .timer-panel .btn-row { justify-content: center; }
 .dark-hero .btn-secondary { color: #FFFFFF; }
 .dark-hero .btn-secondary:hover { background: rgba(255,255,255,.1); }
-.group-label { font-size: 28px; font-weight: 700; color: var(--heading); }
-.group-dots { display: flex; justify-content: center; gap: 10px; margin: 10px 0 0; }
-.group-dots span { width: 18px; height: 18px; border-radius: 4px; background: var(--surface-2); border: 2px solid var(--card-gray); }
-.group-dots span.done { background: var(--sakan-teal); border-color: var(--sakan-teal); }
-.group-dots span.now { background: var(--sakan-orange); border-color: var(--sakan-orange); }
-
 /* ===== القواعد الذهبية ===== */
 .rule-card {
   background: #17403A; color: #FFFFFF; border-radius: var(--radius); box-shadow: var(--shadow);
@@ -596,7 +626,7 @@ body.presenter .site-footer { display: none; }
   .toc-mobile select { background: #FFFFFF; color: #0F2A26; border-color: #67C0B1; font-weight: 600; }
   html { scroll-padding-top: 150px; }
   .alert-sticky { top: 150px; }
-  .grid-2, .grid-3, .builder-fields { grid-template-columns: minmax(0, 1fr); }
+  .grid-2, .grid-3, .builder-fields, .compare-pp, .pp-quiz { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width: 700px) {
   .columns { grid-template-columns: minmax(0, 1fr); }
@@ -730,6 +760,7 @@ body.presenter .site-footer { display: none; }
           <summary>ملاحظات المقدّم</summary>
           <ul>
             <li>اقرأ التعريف بصوت عالٍ، ثم اسأل: «من جرّب أداة ذكاء اصطناعي في عمله؟ ماذا طلب منها؟»</li>
+            <li>في بطاقة «كيف يعمل فعلاً؟» اكتب «طلع البدر…» في الدردشة ودع الحضور يكملون، ثم اضغط العبارة. الرسالة: المدخل الغني يعطي مخرجاً دقيقاً.</li>
             <li>مرّ على بطاقتي «يجيد» و«يخطئ في»، وركّز على الهلوسة: الأسلوب الواثق لا يعني أن المعلومة صحيحة.</li>
             <li>في تمرين «صح أم خطأ» اطلب التصويت في الدردشة (ص / خ) قبل كشف كل عبارة.</li>
             <li>انتقل بعد العبارة الرابعة، ومهّد بسؤال: «إذا كان يخطئ، فمتى نسلّمه مهمة كاملة؟»</li>
@@ -759,6 +790,17 @@ body.presenter .site-footer { display: none; }
               <li>الأرقام الدقيقة دون مصدر</li>
             </ul>
           </div>
+        </div>
+
+        <div class="card c-navy" style="margin-top:28px" id="predict">
+          <h3><span class="card-icon" data-icon="sparkle"></span>كيف يعمل فعلاً؟ يتنبّأ بالكلمة التالية</h3>
+          <p>جُمع ما كتبه البشر ثم فُتّت إلى قطع صغيرة تُسمّى «الرموز»، وتعلّم النموذج شيئاً واحداً: ما الرمز الأرجح بعد هذا الرمز؟ حين تسمع «طلع البدر…» يكمل عقلك «علينا». هذا ما يفعله النموذج، لكن على مستوى كل ما كُتب.</p>
+          <p style="margin:0;font-weight:600">اختر عبارة لترى ما يرجّحه:</p>
+          <div class="predict-phrases" id="predict-phrases" role="group" aria-label="عبارات التجربة"></div>
+          <p class="predict-sentence" id="predict-sentence" aria-live="polite"></p>
+          <div class="predict-bars" id="predict-bars"></div>
+          <p style="margin:12px 0 0;font-size:16px;color:var(--muted)">محاكاة توضيحية بأرقام تقريبية، وليست نموذجاً حقيقياً.</p>
+          <p class="quote-line">الذكاء الاصطناعي ليس سحراً، بل تمييز أنماط. لذلك جودة ما يعطيك لا تتجاوز جودة ما تعطيه: من يملك تفاصيل الحالة كاملة يجيب بدقة، ومن يسمع جملة واحدة يخمّن.</p>
         </div>
 
         <h3 style="margin-top:40px">تمرين: صح أم خطأ؟</h3>
@@ -858,7 +900,7 @@ body.presenter .site-footer { display: none; }
           <ul>
             <li>شغّل المؤقت واترك الشاشة معروضة.</li>
             <li>اطلب من الجميع فتح Copilot أو Claude في نافذة جانبية قبل العودة، لأننا سنجرّب مباشرة.</li>
-            <li>عُد في الموعد تماماً حتى لا يتأثر وقت الغرف الجانبية.</li>
+            <li>عُد في الموعد تماماً حتى لا يتأثر وقت التمارين التالية.</li>
           </ul>
         </details>
         <div class="eyebrow"><span class="dot"></span>القسم 4 · 5 دقائق</div>
@@ -920,6 +962,7 @@ body.presenter .site-footer { display: none; }
               <p class="hint">الطول، والنبرة، والتنسيق (نقاط، جدول، رسالة).</p>
             </div>
           </div>
+          <label class="check-row"><input type="checkbox" id="b-pull"> حوّله إلى «سحب»: اطلب منه أن يسألك أولاً (انظر القسم التالي)</label>
           <div class="btn-row" style="margin-top:18px">
             <button type="button" class="btn btn-primary" id="b-example">مثال جاهز</button>
             <button type="button" class="btn btn-secondary" id="b-clear">مسح الحقول</button>
@@ -938,27 +981,138 @@ body.presenter .site-footer { display: none; }
 
     <div class="pixel-divider" data-pixels="divider" aria-hidden="true"></div>
 
-    <!-- ===== 6) الغرف الجانبية ===== -->
-    <section class="section" id="s6" data-title="غرف جانبية: خريطة العملية" data-minutes="20">
+    <!-- ===== 6) من الاستخدام إلى الإتقان ===== -->
+    <section class="section" id="s6" data-title="من الاستخدام إلى الإتقان" data-minutes="20">
       <div class="pixel-corner tl" data-pixels="soft"></div>
       <div class="section-inner">
         <details class="notes" open>
           <summary>ملاحظات المقدّم</summary>
           <ul>
-            <li>وزّع 5 غرف جانبية من 5–6 أفراد، وأرسل رابط الصفحة في الدردشة قبل التوزيع.</li>
-            <li>اطلب من كل مجموعة تعيين من يشارك الشاشة ومن يعرض النتيجة.</li>
-            <li>مرّ على الغرف، وذكّرهم بالضغط على «قارن بالحل المقترح» بعد إنهاء التصنيف لا قبله، وسؤالهم: «لماذا اختلفتم؟»</li>
-            <li>قبل النهاية بـ 3 دقائق أرسل تنبيهاً عاماً: «اتفقوا على إجابة السؤال الختامي».</li>
+            <li>قل: «ما تعلمناه حتى الآن يضعكم ضمن أفضل المستخدمين. هذا القسم ينقلكم من مستخدم إلى متقن.»</li>
+            <li>اشرح الدفع والسحب بتشبيه وصف الطريق مقابل الملاحة، ثم نفّذ تمرين «دفع أم سحب؟» واسأل بعد كل عبارة: لماذا؟</li>
+            <li>اطلب من كل مشارك ملء «برومبت الماستر» لدوره (5 دقائق)، وذكّرهم: لا بيانات مستفيدين فيه.</li>
+            <li>اعرض برومبت النظام كمثال لما يستخدمه الفريق كله، واختم بالركائز الثلاث: «سلّم المهام المملة للآلة، واستعد وقتك للأسر».</li>
           </ul>
         </details>
 
-        <div class="eyebrow"><span class="dot"></span>القسم 6 · 20 دقيقة · عمل جماعي</div>
-        <h2 class="section-title">غرف جانبية: خريطة العملية</h2>
+        <div class="eyebrow"><span class="dot"></span>القسم 6 · 20 دقيقة · مستوى متقدم</div>
+        <h2 class="section-title">من الاستخدام إلى الإتقان</h2>
+        <p class="lead">أغلب الناس لا يعرفون كيف يستخدمون الذكاء الاصطناعي جيداً حتى الآن. أربع أفكار تنقلك من مستخدم يسأل إلى متقن يبني طريقته.</p>
+        <p class="credit">مقتبس ومكيّف لعمل التمكين من مسار <a href="https://labs.ialhasan.com/ai-mastery/" target="_blank" rel="noopener">«إتقان الذكاء الاصطناعي»</a> في معامل الحسن.</p>
+
+        <div class="sub-block" id="pushpull">
+          <h3><span class="num-circle n1">1</span>الدفع مقابل السحب</h3>
+          <p>أغلب الناس يستخدمونه بالطريقة الصعبة: ينجزون 80% من التفكير بأنفسهم، ثم يتركون له آخر 20%. هذا هو <strong>الدفع</strong>: أن تملي عليه الطريقة خطوة بخطوة. <strong>السحب</strong> عكسه: تبدأ من النتيجة النهائية، وتترك له اكتشاف الطريق. الدفع يشبه زميلاً يصف لك الطريق منعطفاً منعطفاً، والسحب يشبه تطبيق الملاحة: تعطيه الوجهة فيتولى هو الطريق.</p>
+          <div class="compare-pp">
+            <div class="card">
+              <span class="pp-label push">دفع</span>
+              <p class="prompt-quote">«اكتب تقرير الزيارة: ابدأ ببيانات الأسرة، ثم الوضع السكني، ثم التوصية.»</p>
+            </div>
+            <div class="card c-green">
+              <span class="pp-label pull">سحب</span>
+              <p class="prompt-quote">«أنت باحث اجتماعي أول في مؤسسة إسكان تنموي. أريد تقليص الوقت بين الزيارة الميدانية واعتماد التقرير من أسبوع إلى يومين. اسألني كل الأسئلة التي تحتاجها، ثم أعطني الخطة في جدول.»</p>
+            </div>
+          </div>
+          <h4 style="margin-top:22px">وصفة السحب في ثلاثة أجزاء</h4>
+          <ol class="recipe">
+            <li><span class="num-circle n1">1</span>الدور والسياق: من يكون، وما وضعك بأرقام حقيقية.</li>
+            <li><span class="num-circle n2">2</span>الهدف النهائي: النتيجة التي تريدها، لا الخطوات.</li>
+            <li><span class="num-circle n4">3</span>الجملة التي تغيّر كل شيء: «اسألني كل الأسئلة التي تحتاجها، ثم أعطني النتيجة في جدول».</li>
+          </ol>
+          <h4 style="margin-top:28px">تمرين: دفع أم سحب؟</h4>
+          <div class="pp-quiz" id="pp-quiz"></div>
+        </div>
+
+        <div class="sub-block">
+          <h3><span class="num-circle n2">2</span>برومبت الماستر: عرّفه بدورك مرة واحدة</h3>
+          <p>إن كان المخرج الذي يعطيك إياه يصلح لأي شخص آخر، فالسبب أنك لم تعرّفه بنفسك بعد. اكتب ملفاً تعريفياً بدورك الوظيفي مرة واحدة، ثم الصقه في بداية أي محادثة أو احفظه في إعدادات الأداة، فينتقل معك السياق كاملاً.</p>
+          <div class="card c-tool" id="master">
+            <div class="builder-fields">
+              <div class="field"><label for="m-role"><span class="num-circle n1">1</span>دوري</label><textarea id="m-role" rows="2" placeholder="مثال: باحث اجتماعي في فريق التمكين منذ 3 سنوات، أتابع نحو 40 أسرة"></textarea></div>
+              <div class="field"><label for="m-people"><span class="num-circle n2">2</span>المحيطون بي</label><textarea id="m-people" rows="2" placeholder="مثال: مدير الإدارة، 6 جمعيات شريكة، الأسر المستفيدة، فريق الإسكان"></textarea></div>
+              <div class="field"><label for="m-recurring"><span class="num-circle n3">3</span>مهامي المتكررة</label><textarea id="m-recurring" rows="2" placeholder="مثال: تقارير الزيارات، مراسلة الجمعيات، تحديث سجل الحالات"></textarea></div>
+              <div class="field"><label for="m-constraints"><span class="num-circle n4">4</span>القيود</label><textarea id="m-constraints" rows="2" placeholder="مثال: سياسة حماية البيانات، قوالب المؤسسة المعتمدة، مهلة 48 ساعة للتقرير"></textarea></div>
+              <div class="field"><label for="m-voice"><span class="num-circle n1">5</span>النبرة التي أفضّلها</label><textarea id="m-voice" rows="2" placeholder="مثال: مباشر ومختصر، الخلاصة أولاً ثم التفاصيل"></textarea></div>
+              <div class="field"><label for="m-never"><span class="num-circle n2">6</span>الممنوعات</label><textarea id="m-never" rows="2" placeholder="مثال: لا يخترع أرقاماً، لا يفترض معلومات عن الأسر، لا يطيل الشرح"></textarea></div>
+            </div>
+            <div class="btn-row" style="margin-top:18px">
+              <button type="button" class="btn btn-primary" id="m-example">مثال جاهز</button>
+              <button type="button" class="btn btn-secondary" id="m-clear">مسح الحقول</button>
+            </div>
+            <p class="prompt-label" style="margin-top:16px">برومبت الماستر الخاص بك</p>
+            <div class="prompt-box" id="m-output" aria-live="polite"></div>
+            <div class="copy-row" style="margin-top:10px">
+              <span class="copy-status" id="m-output-status" aria-live="polite"></span>
+              <button type="button" class="btn btn-teal btn-sm" data-copy-target="m-output"><span data-icon="copy"></span>نسخ</button>
+            </div>
+            <p style="margin:12px 0 0;font-size:16px;color:var(--muted)">يُحفظ على جهازك فقط. لا تضع فيه أي بيانات شخصية للمستفيدين.</p>
+          </div>
+        </div>
+
+        <div class="sub-block">
+          <h3><span class="num-circle n3">3</span>برومبت النظام: اجعل النتيجة الجيدة تتكرر</h3>
+          <p>حين تصل بعد عدة محاولات إلى مخرج ممتاز، السؤال الصحيح ليس «ما أجمله!» بل «كيف أجعله يتكرر؟». برومبت النظام وصفة ثابتة بخمسة مكونات، تحفظها في مشروع على Claude أو في وكيل مخصص في Copilot، فيستخدمها الفريق كله دون تعليمات جديدة في كل مرة.</p>
+          <div class="grid grid-2">
+            <div class="card c-navy">
+              <h4>الوصفة بالترتيب</h4>
+              <ol class="recipe" style="margin:0">
+                <li><span class="num-circle n1">1</span>الدور والخبرة الدقيقة.</li>
+                <li><span class="num-circle n2">2</span>المدخلات، وما يُطلب إن نقصت.</li>
+                <li><span class="num-circle n3">3</span>الخطوات التي يتبعها بالتسلسل.</li>
+                <li><span class="num-circle n4">4</span>القيود ومعايير الجودة.</li>
+                <li><span class="num-circle n1">5</span>صيغة المخرج بقالب واضح.</li>
+              </ol>
+            </div>
+            <div class="card c-tool">
+              <h4>مثال: مساعد تقارير الزيارات</h4>
+              <div class="prompt-box" id="sys-prompt">الدور: أنت مساعد تقارير البحث الاجتماعي في مؤسسة إسكان تنموي.
+المدخلات: ملاحظات زيارة ميدانية مكتوبة بسرعة. إن نقص عدد أفراد الأسرة أو نوع السكن فاسأل عنهما قبل البدء.
+الخطوات: (1) رتّب الملاحظات في الأقسام الخمسة. (2) ضع [غير متوفر] لكل معلومة ناقصة. (3) اقترح توصية مبدئية مع سببها. (4) اختم بقائمة أسئلة للزيارة القادمة.
+القيود: لا تضف أي معلومة غير موجودة في الملاحظات، ولا تكتب أسماء أو أرقام هوية.
+الصيغة: عناوين الأقسام بالترتيب: بيانات الأسرة، الوضع السكني، الوضع الاقتصادي، الاحتياجات، التوصية المبدئية.</div>
+              <div class="copy-row" style="margin-top:10px">
+                <span class="copy-status" id="sys-prompt-status" aria-live="polite"></span>
+                <button type="button" class="btn btn-teal btn-sm" data-copy-target="sys-prompt"><span data-icon="copy"></span>نسخ</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sub-block">
+          <h3><span class="num-circle n4">4</span>حصّن نفسك: ما لا تنتزعه الآلة منك</h3>
+          <p>الآلات تحسّن ما هو موجود، أما البشر فيتخيّلون ما ليس موجوداً بعد. ثلاث ركائز تجعل دورك أهم، لا أقل، مع الذكاء الاصطناعي:</p>
+          <div class="grid grid-3">
+            <div class="card c-tool pillar"><span class="pillar-icon">الذوق</span><p style="margin:10px 0 0">أن تميّز التقرير الممتاز من الجيد وتشرح السبب. هذا ما يجعلك تراجع مخرجات الآلة بثقة.</p></div>
+            <div class="card c-navy pillar"><span class="pillar-icon">الرؤية</span><p style="margin:10px 0 0">أن ترى ما يجب أن يتغيّر في العملية، ولم يوجد بعد. خصّص وقتاً للتفكير، لا للتنفيذ فقط.</p></div>
+            <div class="card c-human pillar"><span class="pillar-icon">الاهتمام</span><p style="margin:10px 0 0">أن تهتم بالأسر اهتماماً حقيقياً. سلّم المهام المملة للآلة، واستعد وقتك للناس.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="pixel-divider" data-pixels="divider" aria-hidden="true"></div>
+
+    <!-- ===== 7) خريطة عمليتك ===== -->
+    <section class="section" id="s7" data-title="تمرين: خريطة عمليتك" data-minutes="10">
+      <div class="pixel-corner tl" data-pixels="soft"></div>
+      <div class="section-inner">
+        <details class="notes" open>
+          <summary>ملاحظات المقدّم</summary>
+          <ul>
+            <li>اطلب من كل مشارك فتح الصفحة على جهازه، واختيار العملية الأقرب لعمله.</li>
+            <li>امنحهم 5 دقائق للتصنيف، ثم اطلبوا الضغط على «قارن بالحل المقترح».</li>
+            <li>اسأل في الدردشة: «من اختلف تصنيفه عن المقترح؟ ولماذا؟» واختر إجابتين للنقاش.</li>
+            <li>اختم بأن يكتب كل مشارك «الخطوة الأولى» في الصفحة، فهي أساس «التزامي» في الختام.</li>
+          </ul>
+        </details>
+
+        <div class="eyebrow"><span class="dot"></span>القسم 7 · 10 دقائق · تمرين فردي</div>
+        <h2 class="section-title">تمرين: خريطة عمليتك</h2>
 
         <div class="grid grid-3" style="margin-bottom:28px">
-          <div class="card c-green"><h4>1. اختاروا عملية</h4><p style="margin:0">5 مجموعات، في كل منها 5–6 أفراد. يشارك أحدكم الشاشة، وتختار المجموعة عمليتها من القائمة.</p></div>
-          <div class="card c-tool"><h4>2. صنّفوا الخطوات</h4><p style="margin:0">اسحبوا كل بطاقة إلى عمودها: أداة، أو وكيل، أو الإنسان فقط. يمكنكم أيضاً الضغط على البطاقة ثم على العمود.</p></div>
-          <div class="card c-human"><h4>3. قارنوا وناقشوا</h4><p style="margin:0">اضغطوا «قارن بالحل المقترح»، وناقشوا كل اختلاف، ثم أجيبوا عن السؤال الختامي.</p></div>
+          <div class="card c-green"><h4>1. اختر عملية</h4><p style="margin:0">اختر من القائمة العملية الأقرب إلى عملك اليومي.</p></div>
+          <div class="card c-tool"><h4>2. صنّف الخطوات</h4><p style="margin:0">اسحب كل بطاقة إلى عمودها: أداة، أو وكيل، أو الإنسان فقط. أو اضغط البطاقة ثم العمود.</p></div>
+          <div class="card c-human"><h4>3. قارن وفكّر</h4><p style="margin:0">اضغط «قارن بالحل المقترح»، وتأمل كل اختلاف: لماذا صنّفتها هكذا؟</p></div>
         </div>
 
         <div class="card" id="board">
@@ -992,43 +1146,11 @@ body.presenter .site-footer { display: none; }
         </div>
 
         <div class="card c-human" style="margin-top:28px">
-          <h3><span class="card-icon" data-icon="bulb"></span>سؤال ختامي للمجموعة</h3>
-          <p><strong>ما الخطوة الواحدة التي لو بدأنا بها الأسبوع القادم ستوفر أكبر وقت؟</strong></p>
-          <label class="visually-hidden" for="group-answer">إجابة المجموعة</label>
-          <textarea id="group-answer" rows="3" placeholder="اكتبوا إجابتكم هنا لتعرضوها في القسم التالي…"></textarea>
-          <p class="saved-note" id="group-answer-note" aria-live="polite"></p>
-        </div>
-      </div>
-    </section>
-
-    <div class="pixel-divider" data-pixels="divider" aria-hidden="true"></div>
-
-    <!-- ===== 7) عرض المجموعات ===== -->
-    <section class="section" id="s7" data-title="عرض المجموعات" data-minutes="10">
-      <div class="pixel-corner tl" data-pixels="soft"></div>
-      <div class="section-inner">
-        <details class="notes" open>
-          <summary>ملاحظات المقدّم</summary>
-          <ul>
-            <li>استدعِ المجموعات بالترتيب، وشغّل مؤقت الدقيقتين لكل مجموعة.</li>
-            <li>اطلب من كل مجموعة ثلاثة أشياء: العملية، وخطوة واحدة اختلفت عن الحل المقترح ولماذا، وإجابة السؤال الختامي.</li>
-            <li>اكتب «الخطوة الأولى» لكل مجموعة في الدردشة لتبقى مرجعاً بعد الورشة، ثم انتقل إلى الضوابط.</li>
-          </ul>
-        </details>
-
-        <div class="eyebrow"><span class="dot"></span>القسم 7 · 10 دقائق</div>
-        <h2 class="section-title">عرض المجموعات</h2>
-        <p class="lead">لكل مجموعة دقيقتان: العملية، وخطوة اختلفت عن الحل المقترح، والخطوة الأولى للأسبوع القادم.</p>
-
-        <div class="card timer-panel c-green">
-          <div class="group-label" id="group-label">المجموعة 1 من 5</div>
-          <div class="group-dots" id="group-dots" aria-hidden="true"></div>
-          <div class="big-timer on-light" id="group-timer" role="timer" aria-label="مؤقت عرض المجموعة">02:00</div>
-          <div class="btn-row">
-            <button type="button" class="btn btn-secondary" id="group-toggle">ابدأ</button>
-            <button type="button" class="btn btn-primary" id="group-next">المجموعة التالية</button>
-            <button type="button" class="btn btn-secondary" id="group-reset">إعادة من البداية</button>
-          </div>
+          <h3><span class="card-icon" data-icon="bulb"></span>خطوتك الأولى</h3>
+          <p><strong>ما الخطوة الواحدة التي لو بدأت بها الأسبوع القادم ستوفر أكبر وقت؟</strong></p>
+          <label class="visually-hidden" for="first-step">خطوتك الأولى</label>
+          <textarea id="first-step" rows="3" placeholder="اكتب إجابتك هنا…"></textarea>
+          <p class="saved-note" id="first-step-note" aria-live="polite"></p>
         </div>
       </div>
     </section>
@@ -1125,7 +1247,8 @@ body.presenter .site-footer { display: none; }
           <summary>ملاحظات المقدّم</summary>
           <ul>
             <li>اقرأ القواعد الثلاث ببطء، واربط الأولى بنظام حماية البيانات الشخصية وبسياسة الأدوات المعتمدة التي تحدثنا عنها في قسم القيادة.</li>
-            <li>اطلب من كل مشارك كتابة «التزامي» الآن، ومشاركته في الدردشة إن رغب.</li>
+            <li>اطلب من كل مشارك كتابة «التزامي» الآن انطلاقاً من «خطوتك الأولى»، ومشاركته في الدردشة إن رغب.</li>
+            <li>وجّههم إلى مسار «إتقان الذكاء الاصطناعي» في المراجع لمن يريد التعمق بعد الورشة.</li>
             <li>أرسل رابط الصفحة ليعودوا إلى المراجع، واختم بالفكرة المحورية: الأداة تجيبك، والوكيل ينجز لك، وأنت تقرر.</li>
           </ul>
         </details>
@@ -1141,6 +1264,7 @@ body.presenter .site-footer { display: none; }
 
         <div class="card c-human" style="margin-top:32px">
           <h3><span class="card-icon human" data-icon="target"></span>التزامي</h3>
+          <p>عشر دقائق من التطبيق تتفوق على عشر ساعات من المشاهدة. اختر مهمة واحدة تتكرر عليك، وسلّمها للذكاء الاصطناعي هذا الأسبوع، مستعيناً بخطوتك الأولى وبرومبت الماستر.</p>
           <label for="commitment">مهمة واحدة سأجرّب فيها الذكاء الاصطناعي هذا الأسبوع:</label>
           <textarea id="commitment" rows="3" placeholder="مثال: سأستخدم Copilot لتلخيص اجتماع التنسيق القادم واستخراج المهام."></textarea>
           <p class="saved-note" id="commitment-note" aria-live="polite"></p>
@@ -1148,6 +1272,7 @@ body.presenter .site-footer { display: none; }
 
         <h3 style="margin-top:40px">للاستزادة</h3>
         <ul class="resources">
+          <li><span class="card-icon" data-icon="book"></span><span><a href="https://labs.ialhasan.com/ai-mastery/" target="_blank" rel="noopener">إتقان الذكاء الاصطناعي: مسار تعلّم تفاعلي</a><span class="res-src">معامل الحسن · 8 وحدات بالعربية · نحو 45 دقيقة</span></span></li>
           <li><span class="card-icon" data-icon="book"></span><span><a href="https://learn.microsoft.com/ar-sa/training/paths/explore-microsoft-365-copilot-business-chat/" target="_blank" rel="noopener">بناء مهارات الذكاء الاصطناعي التوليدي الأساسية (Copilot)</a><span class="res-src">Microsoft Learn · مسار تدريبي مجاني للمبتدئين</span></span></li>
           <li><span class="card-icon" data-icon="book"></span><span><a href="https://learn.microsoft.com/ar-sa/training/paths/work-smarter-with-ai/" target="_blank" rel="noopener">العمل بذكاء أكبر مع الذكاء الاصطناعي (Copilot)</a><span class="res-src">Microsoft Learn · مسار تدريبي مجاني</span></span></li>
           <li><span class="card-icon" data-icon="book"></span><span><a href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview" target="_blank" rel="noopener">دليل كتابة الأوامر (Prompt engineering)</a><span class="res-src">Anthropic · وثائق Claude (بالإنجليزية)</span></span></li>
@@ -1449,7 +1574,7 @@ const LOGO_TEXT = 'معامل الحسن';
     { id: 'reports', label: 'كتابة التقارير', tip: 'جرّب في القسم الخامس بطاقة Claude لتحويل ملاحظات الزيارة إلى تقرير، وتذكّر أن التقرير الشهري للشريك مثال جيد على مهمة «وكيل».' },
     { id: 'minutes', label: 'المحاضر والمتابعات', tip: 'بطاقة Teams في القسم الخامس مصممة لك: تلخيص الاجتماع واستخراج المهام والمواعيد في جدول.' },
     { id: 'replies', label: 'الرد على الجمعيات والشركاء', tip: 'بطاقة Outlook في القسم الخامس تساعدك في صياغة الرد، وتبقى المراجعة والإرسال بيدك.' },
-    { id: 'data', label: 'إدخال البيانات وتحديثها', tip: 'هذه مساحة «الوكيل» غالباً: مهام متكررة على عدة خطوات. انتبه لها في المسابقة وفي خريطة العملية.' },
+    { id: 'data', label: 'إدخال البيانات وتحديثها', tip: 'هذه مساحة «الوكيل» غالباً: مهام متكررة على عدة خطوات. انتبه لها في المسابقة وفي تمرين «خريطة عمليتك».' },
     { id: 'beneficiaries', label: 'التواصل مع المستفيدين', tip: 'هنا يبقى الجزء الأهم للإنسان: التعاطف والعلاقة. يمكن لأداة أن تساعد في الصياغة والتذكير بالمواعيد فقط.' }
   ];
   const pollBox = $('#poll-options'), pollResult = $('#poll-result');
@@ -1577,6 +1702,99 @@ const LOGO_TEXT = 'معامل الحسن';
   }
   renderQuiz();
 
+  /* ---------- 2) متنبّئ الكلمة التالية (محاكاة) ---------- */
+  const PREDICT = [
+    { text: 'طلع البدر', p: [['علينا', 86], ['اليوم', 7], ['بدراً', 4], ['وأنار', 3]] },
+    { text: 'الصبر مفتاح', p: [['الفرج', 91], ['النجاح', 5], ['كل', 2], ['الأمل', 2]] },
+    { text: 'خير الكلام ما قلّ', p: [['ودلّ', 96], ['وكثر', 2], ['منه', 1], ['وأفاد', 1]] }
+  ];
+  let predictIdx = null;
+  function renderPredict() {
+    $('#predict-phrases').replaceChildren(...PREDICT.map((ph, i) => el('button', {
+      type: 'button', class: 'btn btn-secondary btn-sm predict-phrase', 'aria-pressed': String(predictIdx === i),
+      onclick: () => { predictIdx = i; renderPredict(); }
+    }, el('span', { text: ph.text + '…' }))));
+    const sent = $('#predict-sentence'), bars = $('#predict-bars');
+    if (predictIdx === null) { sent.textContent = ''; bars.replaceChildren(); return; }
+    const ph = PREDICT[predictIdx];
+    sent.replaceChildren(el('span', { text: ph.text + ' ' }), el('span', { class: 'next', text: ph.p[0][0] }));
+    bars.replaceChildren(...ph.p.map(([w, pct]) => {
+      const fill = el('span', { style: 'width:0%' });
+      requestAnimationFrame(() => requestAnimationFrame(() => { fill.style.width = pct + '%'; }));
+      return el('div', { class: 'predict-row' }, [
+        el('span', { class: 'word', text: w }),
+        el('span', { class: 'bar', 'aria-hidden': 'true' }, fill),
+        el('span', { class: 'pct', text: pct + '%' })
+      ]);
+    }));
+  }
+  renderPredict();
+
+  /* ---------- 6) دفع أم سحب؟ ---------- */
+  const PP = [
+    { q: 'لخّص هذا المحضر في خمس نقاط.', a: 'push', why: 'مهمة صغيرة محددة الطريقة. ليست خطأً، لكنها تستخدم جزءاً صغيراً جداً من قدرته.' },
+    { q: 'أنت منسق شراكات. نريد رفع نسبة الملفات المكتملة من الجمعيات من 60% إلى 90% خلال 90 يوماً. اسألني كل ما تحتاجه، ثم أعطني الخطة في جدول.', a: 'pull', why: 'دور، وسياق بأرقام حقيقية، وهدف نهائي، ثم طلب الأسئلة والصيغة: الوصفة الكاملة للسحب.' },
+    { q: 'صُغ رسالة للجمعية: ابدأ بالتحية، ثم اذكر المستندين الناقصين، ثم المهلة، ثم الشكر.', a: 'push', why: 'أنت قررت الشكل والترتيب خطوة بخطوة، فهو ينفّذ وصفتك ولن يقترح طريقة أفضل.' },
+    { q: 'أنت مستشار تشغيل. أحتاج طريقة عادلة لتوزيع الحالات الجديدة على الباحثين. اقترح أفضل طريقة، واسألني أولاً كل ما تحتاج معرفته.', a: 'pull', why: 'بدأت من النتيجة المطلوبة وتركت له اختيار الطريق، ثم طلبت منه أن يسحب منك ما ينقصه.' }
+  ];
+  const PP_LABEL = { push: 'دفع', pull: 'سحب' };
+  function renderPP() {
+    const answers = store.get('pp', {});
+    $('#pp-quiz').replaceChildren(...PP.map((item, i) => {
+      const picked = answers[i];
+      const card = el('div', { class: 'card tf-item c-green' });
+      card.append(el('p', { class: 'prompt-quote', style: 'margin:0', text: `«${item.q}»` }));
+      card.append(el('div', { class: 'btn-row', role: 'group', 'aria-label': 'دفع أم سحب؟' }, ['push', 'pull'].map(v => el('button', {
+        type: 'button', class: 'btn btn-secondary btn-sm', 'aria-pressed': String(picked === v),
+        onclick: () => { const a = store.get('pp', {}); a[i] = v; store.set('pp', a); renderPP(); }
+      }, el('span', { text: PP_LABEL[v] })))));
+      const fb = el('div', { class: 'tf-feedback', 'aria-live': 'polite' });
+      if (picked === undefined) fb.hidden = true;
+      else {
+        const ok = picked === item.a;
+        fb.append(el('span', { class: 'tf-verdict ' + (ok ? 'ok' : 'no') }, [icon(ok ? 'check' : 'cross'), el('span', { text: ok ? 'إجابة صحيحة' : `الإجابة: ${PP_LABEL[item.a]}` })]));
+        fb.append(el('p', { style: 'margin:6px 0 0', text: item.why }));
+      }
+      card.append(fb);
+      return card;
+    }));
+  }
+  renderPP();
+
+  /* ---------- 6) برومبت الماستر ---------- */
+  const MF = [
+    ['role', 'الدور'], ['people', 'المحيطون بي'], ['recurring', 'مهامي المتكررة'],
+    ['constraints', 'القيود'], ['voice', 'النبرة المفضلة'], ['never', 'الممنوعات']
+  ];
+  const M_EXAMPLE = {
+    role: 'باحث اجتماعي في فريق التمكين بمؤسسة إسكان تنموي منذ 3 سنوات، أتابع نحو 40 أسرة.',
+    people: 'مدير إدارة التمكين، وست جمعيات شريكة، والأسر المستفيدة، وفريق مشاريع الإسكان.',
+    recurring: 'تقارير الزيارات الميدانية، ومراسلة الجمعيات لاستكمال الملفات، وتحديث سجل الحالات، والتقرير الشهري.',
+    constraints: 'نظام حماية البيانات الشخصية وسياسة المؤسسة، وقوالب التقارير المعتمدة، ومهلة 48 ساعة لرفع تقرير الزيارة.',
+    voice: 'مباشر ومختصر، الخلاصة أولاً ثم التفاصيل، بلغة عربية مهنية واضحة.',
+    never: 'لا تخترع أرقاماً أو معلومات عن الأسر، ولا تتخذ قراراً نيابة عني، ولا تطل الشرح.'
+  };
+  const mInputs = Object.fromEntries(MF.map(([k]) => [k, $('#m-' + k)]));
+  const mSaved = store.get('master', {});
+  MF.forEach(([k]) => { mInputs[k].value = mSaved[k] || ''; });
+  function renderMaster() {
+    const v = Object.fromEntries(MF.map(([k]) => [k, mInputs[k].value.trim()]));
+    const lines = MF.filter(([k]) => v[k]).map(([k, label]) => `- ${label}: ${v[k]}`);
+    const out = $('#m-output');
+    if (lines.length) {
+      out.textContent = ['هذا ملف تعريفي بي في دوري الوظيفي. اعتمد عليه في كل إجاباتك:', ...lines, 'قبل أي مهمة كبيرة، اسألني عمّا ينقصك من معلومات.'].join('\n');
+      out.dataset.empty = '';
+    } else {
+      out.replaceChildren(el('span', { style: 'color:var(--muted)', text: 'املأ الحقول، وسيتكوّن برومبت الماستر هنا.' }));
+      out.dataset.empty = '1';
+    }
+    store.set('master', v);
+  }
+  MF.forEach(([k]) => mInputs[k].addEventListener('input', renderMaster));
+  $('#m-example').addEventListener('click', () => { MF.forEach(([k]) => { mInputs[k].value = M_EXAMPLE[k]; }); renderMaster(); });
+  $('#m-clear').addEventListener('click', () => { MF.forEach(([k]) => { mInputs[k].value = ''; }); renderMaster(); mInputs.role.focus(); });
+  renderMaster();
+
   /* ---------- 4) مؤقت الاستراحة ---------- */
   const breakTimer = createTimer({
     seconds: 5 * 60, warnAt: 60, display: $('#break-timer'), toggleBtn: $('#break-toggle'),
@@ -1666,6 +1884,8 @@ const LOGO_TEXT = 'معامل الحسن';
   const bInputs = Object.fromEntries(BF.map(k => [k, $('#b-' + k)]));
   const bSaved = store.get('builder', {});
   BF.forEach(k => { bInputs[k].value = bSaved[k] || ''; });
+  $('#b-pull').checked = !!bSaved.pull;
+  $('#b-pull').addEventListener('change', () => renderBuilder());
   function renderBuilder() {
     const v = Object.fromEntries(BF.map(k => [k, bInputs[k].value.trim()]));
     const lines = [];
@@ -1673,10 +1893,12 @@ const LOGO_TEXT = 'معامل الحسن';
     if (v.task) lines.push('المهمة: ' + v.task);
     if (v.context) lines.push('السياق: ' + v.context);
     if (v.format) lines.push('شكل المخرج: ' + v.format);
+    if (lines.length && $('#b-pull').checked) lines.push('قبل أن تبدأ، اسألني كل الأسئلة التي تحتاجها.');
     const out = $('#b-output');
     out.textContent = lines.length ? lines.join('\n') : '';
     out.dataset.empty = lines.length ? '' : '1';
     if (!lines.length) out.append(el('span', { style: 'color:var(--muted)', text: 'املأ الحقول الأربعة، وسيتجمع الأمر هنا تلقائياً.' }));
+    v.pull = $('#b-pull').checked;
     store.set('builder', v);
   }
   BF.forEach(k => bInputs[k].addEventListener('input', renderBuilder));
@@ -1879,7 +2101,7 @@ const LOGO_TEXT = 'معامل الحسن';
     });
     if (f.value) note.textContent = 'محفوظ على جهازك ✓';
   }
-  persistField('group-answer', 'group-answer', 'group-answer-note');
+  persistField('first-step', 'first-step', 'first-step-note');
   persistField('commitment', 'commitment', 'commitment-note');
 
   /* ---------- 8) تبويبات القيادة ---------- */
@@ -1907,29 +2129,6 @@ const LOGO_TEXT = 'معامل الحسن';
   const savedTab = tabs.find(t => t.id === store.get('lead-tab', ''));
   if (savedTab) selectTab(savedTab);
 
-  /* ---------- 7) مؤقت المجموعات ---------- */
-  const GROUPS = 5;
-  let group = 1;
-  const groupDots = $('#group-dots');
-  const groupTimer = createTimer({
-    seconds: 120, warnAt: 20, display: $('#group-timer'), toggleBtn: $('#group-toggle'),
-    labels: { start: 'ابدأ', pause: 'إيقاف مؤقت', resume: 'استئناف' }
-  });
-  function renderGroups() {
-    $('#group-label').textContent = group > GROUPS ? 'انتهت العروض' : `المجموعة ${group} من ${GROUPS}`;
-    groupDots.replaceChildren(...Array.from({ length: GROUPS }, (_, i) =>
-      el('span', { class: i + 1 < group ? 'done' : (i + 1 === group ? 'now' : '') })));
-    $('#group-next').disabled = group > GROUPS;
-    $('#group-next').textContent = group >= GROUPS ? 'إنهاء العروض' : 'المجموعة التالية';
-  }
-  $('#group-next').addEventListener('click', () => {
-    const wasRunning = groupTimer.running;
-    group += 1; groupTimer.reset(120);
-    if (wasRunning && group <= GROUPS) groupTimer.start();
-    renderGroups();
-  });
-  $('#group-reset').addEventListener('click', () => { group = 1; groupTimer.reset(120); renderGroups(); });
-  renderGroups();
 })();
 </script>
 </body>
