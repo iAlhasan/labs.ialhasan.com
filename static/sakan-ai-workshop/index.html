@@ -6,6 +6,7 @@
 <title>ورشة الذكاء الاصطناعي في العمل</title>
 <meta name="description" content="ورشة «الذكاء الاصطناعي وتطبيقاته في بيئة العمل» لفريق التمكين في مؤسسة الإسكان التنموي الأهلية «سكن».">
 <meta name="robots" content="noindex">
+<link rel="icon" type="image/png" href="/images/labs.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -113,8 +114,9 @@ li { margin-bottom: .35em; }
   background: #FFFFFF; border-radius: 10px;
   border: 1px solid #D2E1DE;
 }
-.logo-chip img { max-height: 40px; width: auto; display: block; }
-.logo-text { font-weight: 700; font-size: 26px; color: #17403A; line-height: 1; letter-spacing: 0; }
+.logo-chip { gap: 8px; text-decoration: none; }
+.logo-chip img { height: 32px; width: 32px; display: block; }
+.logo-text { font-weight: 700; font-size: 20px; color: #17403A; line-height: 1; letter-spacing: 0; white-space: nowrap; }
 .header-title { font-weight: 600; font-size: 18px; color: var(--heading); flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .icon-btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
@@ -515,6 +517,37 @@ textarea { resize: vertical; min-height: 84px; }
 .resources .res-src { display: block; font-size: 16px; color: var(--muted); }
 .saved-note { font-size: 16px; font-weight: 600; color: var(--muted); min-height: 1.5em; }
 
+/* ===== بطاقة مقدّم الورشة ===== */
+.bio-card { display: flex; gap: 20px; align-items: flex-start; margin: 0 0 28px; }
+.bio-avatar {
+  flex: none; width: 88px; height: 88px; border-radius: 16px;
+  background: var(--sakan-teal); color: #17403A;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 40px; font-weight: 700;
+}
+.bio-card h3 { margin-bottom: 2px; }
+.bio-role { color: var(--muted); font-weight: 500; margin: 0 0 10px; }
+.bio-card ul { margin: 0 0 8px; }
+.bio-tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 10px; }
+.bio-tags span { font-size: 16px; font-weight: 600; padding: 2px 12px; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--sakan-teal); }
+
+/* ===== قسم القيادة ===== */
+.tabs { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 18px; }
+.tab {
+  min-height: 48px; padding: 8px 20px; border-radius: 10px;
+  border: 2px solid var(--sakan-teal); background: transparent; color: var(--text);
+  font: inherit; font-size: 19px; font-weight: 700; cursor: pointer;
+}
+.tab[aria-selected="true"] { background: var(--sakan-green); border-color: var(--sakan-green); color: #FFFFFF; }
+:root[data-theme="dark"] .tab[aria-selected="true"] { background: var(--sakan-teal); border-color: var(--sakan-teal); color: #17403A; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tab[aria-selected="true"] { background: var(--sakan-teal); border-color: var(--sakan-teal); color: #17403A; } }
+.tab-panel[hidden] { display: none; }
+.use-cases { list-style: none; padding: 0; margin: 0 0 18px; display: grid; gap: 10px; }
+.use-cases li { display: flex; gap: 12px; align-items: flex-start; margin: 0; padding: 10px 14px; background: var(--surface-2); border-radius: 10px; }
+.use-cases .badge { min-width: 124px; justify-content: center; }
+.lead-q { border: 3px solid var(--sakan-orange); border-radius: var(--radius); padding: 14px 18px; font-weight: 600; background: var(--surface); margin-top: 24px; }
+.card h4 { display: flex; align-items: center; gap: 10px; }
+
 /* ===== ملاحظات المقدّم ===== */
 .notes { display: none; }
 body.presenter .notes {
@@ -570,7 +603,8 @@ body.presenter .site-footer { display: none; }
   .column { min-height: 120px; }
   .grid-4 { grid-template-columns: minmax(0, 1fr); }
   .section { padding: 40px 16px 32px; }
-  .analogy { flex-direction: column; }
+  .analogy, .bio-card { flex-direction: column; }
+  .use-cases li { flex-direction: column; gap: 6px; }
   .header-title { font-size: 16px; }
   .pbar-section { order: -1; flex-basis: 100%; }
   .site-header { padding: 8px 16px; gap: 10px; }
@@ -631,20 +665,37 @@ body.presenter .site-footer { display: none; }
         <details class="notes" open>
           <summary>ملاحظات المقدّم</summary>
           <ul>
-            <li>رحّب بالفريق وعرّف بنفسك، وقل: «الورشة عملية؛ ستجرّب بنفسك ولن تكتفي بالمشاهدة».</li>
+            <li>رحّب بالفريق وعرّف بنفسك في دقيقة واحدة من بطاقة «مقدّم الورشة»، وقل: «الورشة عملية؛ ستجرّب بنفسك ولن تكتفي بالمشاهدة».</li>
             <li>اعرض الأهداف الثلاثة، وثبّت الفكرة المحورية: الأداة تجيبك حين تسألها، والوكيل تكلّفه بمهمة فينجزها على عدة خطوات.</li>
             <li>أطلق استطلاع Teams بالسؤال نفسه والخيارات الخمسة لجمع نتائج المجموعة كاملة، ثم اعرض النتيجة واسأل صاحب أعلى خيار: «ماذا تفعل فيها بالتحديد؟»</li>
             <li>انتقل بعد تصويت معظم الحضور (نحو دقيقتين)، واربط أعلى نتيجة بما سيأتي في القسم الخامس.</li>
           </ul>
         </details>
 
-        <div class="eyebrow"><span class="dot"></span>ورشة عن بُعد · ساعتان · فريق التمكين</div>
+        <div class="eyebrow"><span class="dot"></span>ورشة عن بُعد · ساعتان · فريق التمكين والقيادات</div>
         <h1 class="hero-title">الذكاء الاصطناعي وتطبيقاته في بيئة العمل</h1>
         <div class="hero-meta">
           <span>مؤسسة الإسكان التنموي الأهلية «سكن»</span>
           <span>البحث الاجتماعي · التنسيق مع الجمعيات · متابعة المستفيدين</span>
+          <span>القيادة التنفيذية ومديرو الإدارات</span>
         </div>
         <p class="lead">أهلاً بكم. هذه ساعتان عمليتان، نخرج منهما بطريقة جديدة لإنجاز جزء من عملنا اليومي، دون أن نتخلى عن تقديرنا ومسؤوليتنا تجاه الأسر.</p>
+
+        <div class="card bio-card c-tool">
+          <div class="bio-avatar" aria-hidden="true">ح</div>
+          <div>
+            <h3>مقدّم الورشة: الحسن المشيخي</h3>
+            <p class="bio-role">المدير التنفيذي لجمعية مأوى للخدمات الاجتماعية، المتخصصة في الإسكان التنموي، منذ 2023م</p>
+            <div class="bio-tags"><span>القيادة الرقمية</span><span>التحول الرقمي</span><span>ذكاء الأعمال</span><span>بناء القدرات</span></div>
+            <ul>
+              <li>ماجستير في تحليل الأعمال ونظم المعلومات من جامعة جنوب فلوريدا، وبكالوريوس في نظم المعلومات الإدارية من جامعة الملك فهد للبترول والمعادن، وعمل محاضراً فيها.</li>
+              <li>أدار برنامج حلول مايكروسوفت السحابية الذي دعم منظمات غير ربحية في 19 دولة عربية.</li>
+              <li>مستشار ومدرب في أكاديمية الفوزان منذ 2017م في تأهيل قادة المنظمات غير الربحية.</li>
+              <li>حاصل على الزمالة السعودية البريطانية في الحوكمة من كلية بايز للأعمال، واختارته مؤسسة مسك ضمن «قيادات سعودية 10x» في مسار القطاع الثالث.</li>
+            </ul>
+            <a href="https://ialhasan.com/about/" target="_blank" rel="noopener">السيرة الكاملة على ialhasan.com</a>
+          </div>
+        </div>
 
         <div class="core-idea">
           <span class="badge tool" data-icon-before="tool">الأداة</span>
@@ -888,7 +939,7 @@ body.presenter .site-footer { display: none; }
     <div class="pixel-divider" data-pixels="divider" aria-hidden="true"></div>
 
     <!-- ===== 6) الغرف الجانبية ===== -->
-    <section class="section" id="s6" data-title="غرف جانبية: خريطة العملية" data-minutes="25">
+    <section class="section" id="s6" data-title="غرف جانبية: خريطة العملية" data-minutes="20">
       <div class="pixel-corner tl" data-pixels="soft"></div>
       <div class="section-inner">
         <details class="notes" open>
@@ -901,7 +952,7 @@ body.presenter .site-footer { display: none; }
           </ul>
         </details>
 
-        <div class="eyebrow"><span class="dot"></span>القسم 6 · 25 دقيقة · عمل جماعي</div>
+        <div class="eyebrow"><span class="dot"></span>القسم 6 · 20 دقيقة · عمل جماعي</div>
         <h2 class="section-title">غرف جانبية: خريطة العملية</h2>
 
         <div class="grid grid-3" style="margin-bottom:28px">
@@ -953,7 +1004,7 @@ body.presenter .site-footer { display: none; }
     <div class="pixel-divider" data-pixels="divider" aria-hidden="true"></div>
 
     <!-- ===== 7) عرض المجموعات ===== -->
-    <section class="section" id="s7" data-title="عرض المجموعات" data-minutes="12">
+    <section class="section" id="s7" data-title="عرض المجموعات" data-minutes="10">
       <div class="pixel-corner tl" data-pixels="soft"></div>
       <div class="section-inner">
         <details class="notes" open>
@@ -965,7 +1016,7 @@ body.presenter .site-footer { display: none; }
           </ul>
         </details>
 
-        <div class="eyebrow"><span class="dot"></span>القسم 7 · 12 دقيقة</div>
+        <div class="eyebrow"><span class="dot"></span>القسم 7 · 10 دقائق</div>
         <h2 class="section-title">عرض المجموعات</h2>
         <p class="lead">لكل مجموعة دقيقتان: العملية، وخطوة اختلفت عن الحل المقترح، والخطوة الأولى للأسبوع القادم.</p>
 
@@ -984,20 +1035,102 @@ body.presenter .site-footer { display: none; }
 
     <div class="pixel-divider" data-pixels="divider" aria-hidden="true"></div>
 
-    <!-- ===== 8) الضوابط والختام ===== -->
-    <section class="section" id="s8" data-title="الضوابط والختام" data-minutes="8">
+    <!-- ===== 8) القيادة ===== -->
+    <section class="section" id="s8" data-title="الذكاء الاصطناعي على مستوى القيادة" data-minutes="8">
       <div class="pixel-corner tl" data-pixels="soft"></div>
       <div class="section-inner">
         <details class="notes" open>
           <summary>ملاحظات المقدّم</summary>
           <ul>
-            <li>اقرأ القواعد الثلاث ببطء، واربط الأولى بنظام حماية البيانات الشخصية وبسياسة المؤسسة في الأدوات المعتمدة.</li>
+            <li>وجّه هذا القسم للقيادة العليا ومديري الإدارات الحاضرين، وقل للفريق: «هذا ما تحتاجونه من قادتكم لتنجح التجربة».</li>
+            <li>بدّل بين التبويبين، واسأل مدير إدارة حاضراً: «ما الخطوة في إدارتك التي تصلح للتجربة أولاً؟»</li>
+            <li>ركّز على أدوار القيادة الأربعة، وخاصة اعتماد الأدوات وحماية بيانات المستفيدين.</li>
+            <li>انتقل بعد عرض خارطة الـ 90 يوماً وسؤال المؤشر، واربطها بقسم «التزامي».</li>
+          </ul>
+        </details>
+
+        <div class="eyebrow"><span class="dot"></span>القسم 8 · 8 دقائق · للقيادة التنفيذية ومديري الإدارات</div>
+        <h2 class="section-title">الذكاء الاصطناعي على مستوى القيادة</h2>
+        <p class="lead">نجاح التجربة لا يتوقف على مهارة الموظف وحده. القيادة العليا تحدد الاتجاه والضوابط، ومديرو الإدارات يحوّلونها إلى ممارسة يومية في فرقهم.</p>
+
+        <div class="card c-navy" id="lead-tabs">
+          <div class="tabs" role="tablist" aria-label="مستوى القيادة">
+            <button type="button" class="tab" role="tab" id="tab-exec" aria-controls="panel-exec" aria-selected="true">القيادة العليا التنفيذية</button>
+            <button type="button" class="tab" role="tab" id="tab-mgr" aria-controls="panel-mgr" aria-selected="false" tabindex="-1">مديرو الإدارات</button>
+          </div>
+
+          <div class="tab-panel" role="tabpanel" id="panel-exec" aria-labelledby="tab-exec">
+            <p><strong>التركيز:</strong> الاتجاه، والحوكمة، وتخصيص الموارد.</p>
+            <ul class="use-cases">
+              <li><span class="badge tool" data-icon-before="tool">أداة</span><span>تلخيص تقارير أداء الإدارات الشهرية في صفحة واحدة تبرز المؤشرات المتأخرة.</span></li>
+              <li><span class="badge tool" data-icon-before="tool">أداة</span><span>صياغة مسودة ورقة قرار تعرض البدائل ومخاطر كل بديل.</span></li>
+              <li><span class="badge agent" data-icon-before="agent">وكيل</span><span>إعداد لوحة متابعة أسبوعية تجمع مؤشرات الإدارات من جداولها وتنبّه عند الانحراف.</span></li>
+              <li><span class="badge agent" data-icon-before="agent">وكيل</span><span>تجهيز ملف اجتماع مجلس الإدارة: جمع التقارير، وتوحيد قالبها، واستخراج القرارات المعلّقة.</span></li>
+              <li><span class="badge human" data-icon-before="person">الإنسان فقط</span><span>اعتماد الأولويات والسياسات وتخصيص الموارد.</span></li>
+              <li><span class="badge human" data-icon-before="person">الإنسان فقط</span><span>المساءلة أمام مجلس الإدارة والجهات الإشرافية.</span></li>
+            </ul>
+            <p class="prompt-label">أمر للتجربة (Copilot في Word أو Claude)</p>
+            <div class="prompt-box" id="lead-prompt-exec">أنت مستشار تنفيذي في مؤسسة إسكان تنموي. لخّص تقارير أداء الإدارات المرفقة في صفحة واحدة: أبرز 3 إنجازات، وأبرز 3 مؤشرات متأخرة مع سبب التأخر كما ورد في التقارير، و3 قرارات مطلوبة من الإدارة التنفيذية. لا تضف أي رقم غير موجود في التقارير.</div>
+            <div class="copy-row" style="margin-top:10px">
+              <span class="copy-status" id="lead-prompt-exec-status" aria-live="polite"></span>
+              <button type="button" class="btn btn-teal btn-sm" data-copy-target="lead-prompt-exec"><span data-icon="copy"></span>نسخ</button>
+            </div>
+          </div>
+
+          <div class="tab-panel" role="tabpanel" id="panel-mgr" aria-labelledby="tab-mgr" hidden>
+            <p><strong>التركيز:</strong> تحويل الاتجاه إلى ممارسة يومية في الفريق.</p>
+            <ul class="use-cases">
+              <li><span class="badge tool" data-icon-before="tool">أداة</span><span>تجهيز ملخص الاجتماع الأسبوعي للفريق وتوزيع المهام.</span></li>
+              <li><span class="badge tool" data-icon-before="tool">أداة</span><span>توحيد قوالب التقارير والمراسلات المتكررة في الإدارة.</span></li>
+              <li><span class="badge agent" data-icon-before="agent">وكيل</span><span>متابعة مهام الفريق في الجدول وتذكير أصحاب المهام المتأخرة.</span></li>
+              <li><span class="badge agent" data-icon-before="agent">وكيل</span><span>إعداد التقرير الشهري للإدارة من بيانات الحالات والزيارات.</span></li>
+              <li><span class="badge human" data-icon-before="person">الإنسان فقط</span><span>تقييم أداء الموظفين وتطويرهم.</span></li>
+              <li><span class="badge human" data-icon-before="person">الإنسان فقط</span><span>توزيع الحالات الحساسة والتدخل فيها.</span></li>
+            </ul>
+            <p class="prompt-label">أمر للتجربة (Copilot في Excel أو Claude)</p>
+            <div class="prompt-box" id="lead-prompt-mgr">أنت مدير إدارة التمكين. من جدول المهام المرفق، استخرج المهام المتأخرة لكل موظف، واقترح أولويات الأسبوع القادم في جدول، ثم صُغ رسالة متابعة قصيرة ومحفّزة للفريق. اعرض المسودة عليّ قبل الإرسال.</div>
+            <div class="copy-row" style="margin-top:10px">
+              <span class="copy-status" id="lead-prompt-mgr-status" aria-live="polite"></span>
+              <button type="button" class="btn btn-teal btn-sm" data-copy-target="lead-prompt-mgr"><span data-icon="copy"></span>نسخ</button>
+            </div>
+          </div>
+        </div>
+
+        <h3 style="margin-top:40px">دور القيادة في نجاح التبنّي</h3>
+        <div class="grid grid-2">
+          <div class="card c-green"><h4><span class="num-circle n1">1</span>اعتماد الأدوات والسياسة</h4><p style="margin:0">حدّدوا الأدوات المعتمدة وما يجوز إدخاله فيها من بيانات، استناداً إلى نظام حماية البيانات الشخصية ومبادئ أخلاقيات الذكاء الاصطناعي.</p></div>
+          <div class="card c-tool"><h4><span class="num-circle n2">2</span>البدء بعملية واحدة</h4><p style="margin:0">لكل إدارة عملية تجريبية واحدة بمؤشر واضح، مثل الوقت الموفَّر أسبوعياً أو عدد الملفات المكتملة.</p></div>
+          <div class="card c-navy"><h4><span class="num-circle n3">3</span>سفير في كل إدارة</h4><p style="margin:0">موظف متحمس يجمع الأوامر الناجحة في مكتبة مشتركة، ويساعد زملاءه في التجربة.</p></div>
+          <div class="card c-human"><h4><span class="num-circle n4">4</span>القدوة والمراجعة</h4><p style="margin:0">يستخدم القائد الأدوات بنفسه، ويثبّت مبدأ أن الذكاء الاصطناعي يقترح والموظف يقرر.</p></div>
+        </div>
+
+        <h3 style="margin-top:40px">خارطة 90 يوماً</h3>
+        <div class="grid grid-3 roadmap">
+          <div class="card c-tool"><h4><span data-icon="target"></span>أول 30 يوماً</h4><p style="margin:0">اعتماد الأدوات وسياسة الاستخدام، وتدريب الفرق، واختيار العملية التجريبية لكل إدارة.</p></div>
+          <div class="card c-navy"><h4><span data-icon="agent"></span>حتى 60 يوماً</h4><p style="margin:0">تنفيذ التجربة في كل إدارة، وجمع الأوامر الناجحة، ومراجعة الأخطاء أسبوعياً.</p></div>
+          <div class="card c-human"><h4><span data-icon="check"></span>حتى 90 يوماً</h4><p style="margin:0">قياس الوقت الموفَّر وجودة المخرجات، ثم تعميم ما نجح وإيقاف ما لم ينجح.</p></div>
+        </div>
+
+        <p class="lead-q">سؤال للقيادة: ما المؤشر الذي ستقيسون به نجاح التجربة بعد 90 يوماً؟</p>
+      </div>
+    </section>
+
+    <div class="pixel-divider" data-pixels="divider" aria-hidden="true"></div>
+
+    <!-- ===== 9) الضوابط والختام ===== -->
+    <section class="section" id="s9" data-title="الضوابط والختام" data-minutes="7">
+      <div class="pixel-corner tl" data-pixels="soft"></div>
+      <div class="section-inner">
+        <details class="notes" open>
+          <summary>ملاحظات المقدّم</summary>
+          <ul>
+            <li>اقرأ القواعد الثلاث ببطء، واربط الأولى بنظام حماية البيانات الشخصية وبسياسة الأدوات المعتمدة التي تحدثنا عنها في قسم القيادة.</li>
             <li>اطلب من كل مشارك كتابة «التزامي» الآن، ومشاركته في الدردشة إن رغب.</li>
             <li>أرسل رابط الصفحة ليعودوا إلى المراجع، واختم بالفكرة المحورية: الأداة تجيبك، والوكيل ينجز لك، وأنت تقرر.</li>
           </ul>
         </details>
 
-        <div class="eyebrow"><span class="dot"></span>القسم 8 · 8 دقائق</div>
+        <div class="eyebrow"><span class="dot"></span>القسم 9 · 7 دقائق</div>
         <h2 class="section-title">الضوابط والختام</h2>
         <h3>ثلاث قواعد ذهبية</h3>
         <div class="grid grid-3">
@@ -1027,14 +1160,16 @@ body.presenter .site-footer { display: none; }
 
     <footer class="site-footer">
       <div class="pixel-divider" data-pixels="divider" aria-hidden="true"></div>
-      مؤسسة الإسكان التنموي الأهلية «سكن» · فريق التمكين
+      مؤسسة الإسكان التنموي الأهلية «سكن» · فريق التمكين<br>
+      إعداد وتقديم: الحسن المشيخي · <a href="https://labs.ialhasan.com/">معامل الحسن</a>
     </footer>
   </main>
 </div>
 
 <script>
-/* ===== الإعداد: ضع رابط الشعار هنا (اتركه فارغاً لعرض كلمة «سكن») ===== */
-const LOGO_SRC = '';
+/* ===== الإعداد: الشعار (اترك LOGO_SRC فارغاً لعرض النص وحده) ===== */
+const LOGO_SRC = '/images/labs.png';
+const LOGO_TEXT = 'معامل الحسن';
 
 (function () {
   'use strict';
@@ -1159,8 +1294,12 @@ const LOGO_SRC = '';
 
   /* ---------- الشعار ---------- */
   $$('[data-logo]').forEach(node => {
-    if (LOGO_SRC) node.append(el('img', { src: LOGO_SRC, alt: 'سكن' }));
-    else node.append(el('span', { class: 'logo-text', text: 'سكن' }));
+    if (LOGO_SRC) {
+      const img = el('img', { src: LOGO_SRC, alt: '' });
+      img.addEventListener('error', () => img.remove());
+      node.append(img);
+    }
+    node.append(el('span', { class: 'logo-text', text: LOGO_TEXT }));
   });
 
   /* ---------- الوضع الداكن ---------- */
@@ -1742,6 +1881,31 @@ const LOGO_SRC = '';
   }
   persistField('group-answer', 'group-answer', 'group-answer-note');
   persistField('commitment', 'commitment', 'commitment-note');
+
+  /* ---------- 8) تبويبات القيادة ---------- */
+  const tabs = $$('#lead-tabs [role="tab"]');
+  function selectTab(tab, focus) {
+    tabs.forEach(t => {
+      const on = t === tab;
+      t.setAttribute('aria-selected', String(on));
+      t.tabIndex = on ? 0 : -1;
+      document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+    });
+    if (focus) tab.focus();
+    store.set('lead-tab', tab.id);
+  }
+  tabs.forEach((t, i) => {
+    t.addEventListener('click', () => selectTab(t));
+    t.addEventListener('keydown', e => {
+      // في RTL: السهم الأيسر للتبويب التالي
+      const d = e.key === 'ArrowLeft' ? 1 : e.key === 'ArrowRight' ? -1 : 0;
+      if (!d) return;
+      e.preventDefault(); e.stopPropagation();
+      selectTab(tabs[(i + d + tabs.length) % tabs.length], true);
+    });
+  });
+  const savedTab = tabs.find(t => t.id === store.get('lead-tab', ''));
+  if (savedTab) selectTab(savedTab);
 
   /* ---------- 7) مؤقت المجموعات ---------- */
   const GROUPS = 5;
