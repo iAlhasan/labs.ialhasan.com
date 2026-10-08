@@ -390,6 +390,34 @@ table.compare { width: 100%; border-collapse: collapse; background: var(--surfac
 .copy-row { display: flex; justify-content: flex-end; align-items: center; gap: 10px; }
 .copy-status { font-size: 16px; font-weight: 600; color: var(--muted); }
 
+/* معرض نصائح Copilot */
+.tips { margin: 40px 0 0; }
+.tips-head { display: flex; flex-wrap: wrap; gap: 12px; align-items: baseline; justify-content: space-between; }
+.tips-progress { font-weight: 700; color: var(--heading); font-variant-numeric: tabular-nums; }
+.tips-filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 18px; }
+.tips-filters .btn[aria-pressed="true"] { background: var(--sakan-green); border-color: var(--sakan-green); color: #FFFFFF; }
+:root[data-theme="dark"] .tips-filters .btn[aria-pressed="true"] { background: var(--sakan-teal); border-color: var(--sakan-teal); color: #17403A; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tips-filters .btn[aria-pressed="true"] { background: var(--sakan-teal); border-color: var(--sakan-teal); color: #17403A; } }
+.tips-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.tip-card { display: flex; flex-direction: column; gap: 10px; }
+.tip-card.done { box-shadow: 0 0 0 2px var(--sakan-teal), var(--shadow); }
+.tip-top { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.tip-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 38px; height: 38px; border-radius: 10px; flex: none;
+  background: var(--sakan-green); color: #FFFFFF; font-weight: 700; font-size: 19px;
+}
+:root[data-theme="dark"] .tip-num { background: var(--sakan-teal); color: #17403A; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tip-num { background: var(--sakan-teal); color: #17403A; } }
+.tip-app { font-size: 16px; font-weight: 600; padding: 2px 12px; border-radius: 999px; border: 1px solid var(--sakan-teal); background: var(--surface-2); }
+.tip-card .badge { margin-inline-start: auto; }
+.tip-card h4 { margin: 0; }
+.tip-where { font-size: 16px; color: var(--muted); margin: 0; line-height: 1.7; }
+.tip-where strong { color: var(--text); }
+.tip-note { font-size: 16px; margin: 0; padding: 6px 12px; border-inline-start: 4px solid var(--sakan-orange); background: var(--surface-2); border-radius: 6px; }
+.tip-card .check-row { margin-top: auto; padding-top: 4px; }
+.license-note { font-size: 16px; color: var(--muted); margin: 0 0 6px; }
+
 /* شريط التنبيه */
 .alert-sticky {
   position: sticky; top: 76px; z-index: 20;
@@ -626,7 +654,7 @@ body.presenter .site-footer { display: none; }
   .toc-mobile select { background: #FFFFFF; color: #0F2A26; border-color: #67C0B1; font-weight: 600; }
   html { scroll-padding-top: 150px; }
   .alert-sticky { top: 150px; }
-  .grid-2, .grid-3, .builder-fields, .compare-pp, .pp-quiz { grid-template-columns: minmax(0, 1fr); }
+  .grid-2, .grid-3, .builder-fields, .compare-pp, .pp-quiz, .tips-grid { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width: 700px) {
   .columns { grid-template-columns: minmax(0, 1fr); }
@@ -926,6 +954,8 @@ body.presenter .site-footer { display: none; }
             <li>اعرض البطاقات الأربع حياً، وابدأ بـ Teams لأنها الأقرب لعمل التنسيق مع الجمعيات.</li>
             <li>اطلب من الجميع نسخ أمر واحد وتجربته الآن، ثم مشاركة نتيجته في الدردشة.</li>
             <li>في بطاقة Claude اسأل: «لماذا كتبنا: لا تضف أي معلومة غير موجودة؟» (للحدّ من الهلوسة).</li>
+            <li>من نصائح Copilot اعرض حياً ثلاثاً فقط: التعليمات المخصصة (2)، ووضع الوكيل في Excel (8)، واللحاق باجتماع في Teams (14).</li>
+            <li>ومن نصائح Claude اعرض اثنتين: المشاريع (7) والمهارات (15)، ثم أشر إلى فئة «الأتمتة» وقل: «لاحظوا أنها كلها وكلاء». البقية مرجع يعودون إليه بعد الورشة.</li>
             <li>اضغط «مثال جاهز» في باني الأوامر لشرح العناصر الأربعة، وانتقل بعد مشاركة 3–4 نتائج في الدردشة.</li>
           </ul>
         </details>
@@ -936,6 +966,28 @@ body.presenter .site-footer { display: none; }
         <div class="alert-sticky" role="note"><span data-icon="shield"></span>في التجربة استخدم بيانات وهمية فقط.</div>
 
         <div class="grid grid-2" id="demo-cards"></div>
+
+        <div class="tips" id="tips" data-gallery="copilot">
+          <div class="tips-head">
+            <h3 style="margin:0;font-size:28px">15 نصيحة لـ Microsoft 365 Copilot</h3>
+            <span class="tips-progress" aria-live="polite"></span>
+          </div>
+          <p>من Copilot Chat إلى Outlook وExcel وPowerPoint وWord وTeams. كل نصيحة فيها مكانها، ومثال من عمل التمكين، وتصنيفها: هل تستخدمها كأداة تسألها، أم كوكيل تكلّفه؟ علّم ما جرّبته، ويُحفظ على جهازك.</p>
+          <p class="license-note">بعض هذه المزايا متاح لكل مستخدمي Microsoft 365، وبعضها يتطلب ترخيص Microsoft 365 Copilot. وقد تختلف أسماء القوائم بحسب إصدار المؤسسة ولغة الواجهة، لذلك نذكر الاسم الإنجليزي بين قوسين.</p>
+          <div class="tips-filters" role="group" aria-label="تصفية حسب التطبيق"></div>
+          <div class="tips-grid"></div>
+        </div>
+
+        <div class="tips" id="claude-tips" data-gallery="claude">
+          <div class="tips-head">
+            <h3 style="margin:0;font-size:28px">16 نصيحة لـ Claude</h3>
+            <span class="tips-progress" aria-live="polite"></span>
+          </div>
+          <p>أغلب الناس يستخدمون Claude كمحرك بحث متطور، وهذا يشبه أن تقود سيارة سباق بسرعة 10 كم في الساعة. هذه النصائح تتدرج من الأساسيات إلى الأتمتة. لا تحتاجها كلها؛ يكفي أن تعرف أنها موجودة، وأن تبدأ بواحدة اليوم.</p>
+          <p class="license-note">بعض هذه المزايا حديثة أو تجريبية، وتختلف بحسب الخطة والجهاز. وربط البريد والتقويم والمتصفح والحاسب يمنح الأداة وصولاً واسعاً إلى بياناتك، فاستخدم ما تعتمده المؤسسة فقط (القاعدة الذهبية 1).</p>
+          <div class="tips-filters" role="group" aria-label="تصفية حسب الفئة"></div>
+          <div class="tips-grid"></div>
+        </div>
 
         <div class="card builder c-green" id="builder">
           <h3><span class="card-icon" data-icon="bulb"></span>باني الأوامر</h3>
@@ -1045,7 +1097,7 @@ body.presenter .site-footer { display: none; }
               <span class="copy-status" id="m-output-status" aria-live="polite"></span>
               <button type="button" class="btn btn-teal btn-sm" data-copy-target="m-output"><span data-icon="copy"></span>نسخ</button>
             </div>
-            <p style="margin:12px 0 0;font-size:16px;color:var(--muted)">يُحفظ على جهازك فقط. لا تضع فيه أي بيانات شخصية للمستفيدين.</p>
+            <p style="margin:12px 0 0;font-size:16px;color:var(--muted)">يُحفظ على جهازك فقط. لا تضع فيه أي بيانات شخصية للمستفيدين. ضعه في «التعليمات المخصصة» في Copilot (النصيحة 2)، أو في تعليمات مشروع على Claude (النصيحة 7)، ليعمل في كل محادثة تلقائياً.</p>
           </div>
         </div>
 
@@ -1188,6 +1240,7 @@ body.presenter .site-footer { display: none; }
               <li><span class="badge tool" data-icon-before="tool">أداة</span><span>صياغة مسودة ورقة قرار تعرض البدائل ومخاطر كل بديل.</span></li>
               <li><span class="badge agent" data-icon-before="agent">وكيل</span><span>إعداد لوحة متابعة أسبوعية تجمع مؤشرات الإدارات من جداولها وتنبّه عند الانحراف.</span></li>
               <li><span class="badge agent" data-icon-before="agent">وكيل</span><span>تجهيز ملف اجتماع مجلس الإدارة: جمع التقارير، وتوحيد قالبها، واستخراج القرارات المعلّقة.</span></li>
+              <li><span class="badge agent" data-icon-before="agent">وكيل</span><span>أمر مجدول في Copilot كل أحد صباحاً: أهم 3 أولويات من البريد، وملخص اجتماعات الأسبوع (النصيحة 3).</span></li>
               <li><span class="badge human" data-icon-before="person">الإنسان فقط</span><span>اعتماد الأولويات والسياسات وتخصيص الموارد.</span></li>
               <li><span class="badge human" data-icon-before="person">الإنسان فقط</span><span>المساءلة أمام مجلس الإدارة والجهات الإشرافية.</span></li>
             </ul>
@@ -1794,6 +1847,194 @@ const LOGO_TEXT = 'معامل الحسن';
   $('#m-example').addEventListener('click', () => { MF.forEach(([k]) => { mInputs[k].value = M_EXAMPLE[k]; }); renderMaster(); });
   $('#m-clear').addEventListener('click', () => { MF.forEach(([k]) => { mInputs[k].value = ''; }); renderMaster(); mInputs.role.focus(); });
   renderMaster();
+
+  /* ---------- 5) نصائح Copilot ---------- */
+  const TIP_APPS = ['Copilot Chat', 'Outlook', 'Excel', 'PowerPoint', 'Word', 'Teams'];
+  const TIPS = [
+    { app: 'Copilot Chat', cat: 'tool', title: 'اختر طريقة التفكير المناسبة',
+      where: 'microsoft365.com ← محدد الوضع أعلى المحادثة: تلقائي (Auto)، رد سريع (Quick response)، تفكير أعمق (Think deeper).',
+      body: 'الرد السريع للأسئلة البسيطة، والتفكير الأعمق للتخطيط والتحليل الذي يحتاج خطوات. يمكنك توسيع مراحل التفكير لترى ما يفعله.',
+      prompt: 'فكّر بعمق: اقترح خطة لتقليص مدة استكمال ملفات الأسر لدى الجمعيات الشريكة من شهر إلى أسبوعين، مع المخاطر وطريقة القياس.' },
+    { app: 'Copilot Chat', cat: 'tool', title: 'التعليمات المخصصة: عرّفه بك مرة واحدة',
+      where: 'القائمة ⋯ ← الإعدادات (Settings) ← التخصيص (Personalization) ← التعليمات المخصصة (Custom instructions).',
+      body: 'اكتب من أنت وكيف تريد شكل الردود، فيلتزم بها في كل محادثة. هنا مكان «برومبت الماستر» الذي تبنيه في القسم السادس.',
+      prompt: 'أعمل باحثاً اجتماعياً في فريق التمكين بمؤسسة إسكان تنموي. استخدم لغة عربية مهنية واضحة، وابدأ بالخلاصة في نقاط، ولا تخترع أرقاماً أو معلومات عن الأسر.' },
+    { app: 'Copilot Chat', cat: 'agent', title: 'جدولة أمر يتكرر تلقائياً',
+      where: 'بعد تشغيل الأمر: القائمة ⋯ ← جدولة هذا الأمر (Schedule this prompt)، ثم اختر اليوم والوقت والتكرار، وفعّل إرسال بريد عند جاهزية الرد.',
+      body: 'هنا يصبح Copilot أقرب إلى الوكيل: يعمل في موعده دون أن تسأله. يمكنك تشغيله فوراً، أو تعديله، أو إيقافه، أو حذفه.',
+      prompt: 'تصرّف كمساعدي التنفيذي: راجع بريدي واستخرج أهم 3 أمور يجب أن أركز عليها هذا الأسبوع، ثم لخّص اجتماعات تقويمي للأسبوع في نقاط قصيرة.' },
+    { app: 'Copilot Chat', cat: 'tool', title: 'استند إلى ملفاتك واكتب «/»',
+      where: 'زر الإرفاق: محتوى العمل، أو ملفات OneDrive، أو رفع ملف. أو اكتب «/» داخل الأمر وابحث عن ملف أو شخص أو اجتماع أو رسالة.',
+      body: 'الإجابة المستندة إلى ملفك أدق من الإجابة العامة. وجرّب «معرض الأوامر» (View prompts) لأوامر جاهزة مصنفة حسب المهمة والوظيفة.',
+      prompt: 'حلّل جدول الحالات /[اسم الملف] واستخرج أبرز 5 ملاحظات: توزيع الحالات على الأحياء، والحالات المتأخرة، وأي نمط يستحق الانتباه.' },
+    { app: 'Copilot Chat', cat: 'tool', title: 'أنشئ فيديو قصيراً بالذكاء الاصطناعي',
+      where: 'إنشاء (Create) في القائمة الجانبية ← فيديو: من وصف مكتوب، أو من عرض PowerPoint موجود يحرّكه ويضيف إليه تعليقاً صوتياً.',
+      body: 'عدّل النص والصوت والموسيقى ثم أعد التوليد، أو افتحه في Clipchamp لتحرير أدق، ثم صدّره أو شاركه.',
+      prompt: 'أنشئ فيديو تعريفياً مدته دقيقة للموظفين الجدد في فريق التمكين يشرح خطوات استقبال طلب أسرة. النبرة مهنية ومرحّبة.',
+      note: 'لا تستخدم صور المستفيدين أو بياناتهم في المحتوى المولَّد.' },
+    { app: 'Outlook', cat: 'tool', title: 'الحق ببريدك بعد غياب',
+      where: 'زر Copilot أعلى Outlook، وزر التلخيص (Summarize) أعلى أي رسالة طويلة.',
+      body: 'اطلب ملخصاً لما فاتك وما يحتاج رداً سريعاً، ثم لخّص الرسائل الطويلة واحدة واحدة قبل قراءتها كاملة.',
+      prompt: 'كنت في إجازة ثلاثة أيام. لخّص أهم ما في بريدي وتقويمي، وأخبرني بما يحتاج متابعة سريعة من الجمعيات الشريكة.' },
+    { app: 'Outlook', cat: 'tool', title: 'تعليمات صياغة ثابتة لردودك',
+      where: 'قائمة Copilot ← الإعدادات (Settings) ← تعليمات الصياغة (Draft instructions). ثم عند الرد اختر «صياغة باستخدام Copilot» (Draft with Copilot) وخياراً سريعاً.',
+      body: 'تكتب أسلوبك مرة واحدة، فتخرج كل مسودة بالنبرة والطول اللذين تريدهما. تبقى المراجعة والإرسال بيدك.',
+      prompt: 'عند الرد: نبرة مهنية ودودة، رسالة قصيرة بنقاط، اذكر المطلوب بوضوح وموعداً محدداً، واختم بالشكر.' },
+    { app: 'Excel', cat: 'agent', title: 'وضع الوكيل في Excel',
+      where: 'الصفحة الرئيسية ← Copilot ← الأدوات (Tools) ← وضع الوكيل (Agent mode).',
+      body: 'تصف ما تريد بلغة عادية فينفّذه على خطوات: ينظّم الأوراق، وينظف البيانات، ويبني جداول محورية ومخططات، ويشرح ما فعله.',
+      prompt: 'وحّد كتابة الأسماء في عمودي الاسم الأول واسم العائلة، ثم أضف بعد عمود الحي عموداً بعنوان «العنوان الكامل» يجمع المدينة والحي، ثم أنشئ جدولاً محورياً بعدد الحالات لكل حي مع مخطط أعمدة.' },
+    { app: 'Excel', cat: 'tool', title: 'دالة COPILOT لتحليل النصوص',
+      where: 'داخل أي خلية: ‎=COPILOT("الأمر"، الخلية)‎ ثم اسحبها على بقية الصفوف.',
+      body: 'مناسبة لتحليل تعليقات استبيانات الرضا: تصنّف كل تعليق في صفه، فترى الصورة كاملة في دقائق.',
+      prompt: '=COPILOT("صنّف ملاحظة المستفيد إلى إيجابية أو محايدة أو سلبية، واذكر السبب في ثلاث كلمات", D2)',
+      note: 'إن طلبت منه بيانات عامة من الويب فتحقق منها قبل الاعتماد عليها.' },
+    { app: 'PowerPoint', cat: 'tool', title: 'أنشئ عرضاً كاملاً',
+      where: 'ملف (File) ← إنشاء باستخدام Copilot (Create with Copilot): اكتب الموضوع، واختر الطول، وأرفق ملفاً مرجعياً.',
+      body: 'يبني مخططاً تعدّله قبل التنفيذ، ثم تختار نمط التصميم وتعاين الشرائح قبل إضافتها.',
+      prompt: 'أنشئ عرضاً متوسط الطول عن نتائج متابعة الأسر بعد التسكين لهذا الربع، بالاستناد إلى التقرير المرفق: الأرقام الرئيسية، والتحديات، والتوصيات.' },
+    { app: 'PowerPoint', cat: 'tool', title: 'حرّر الصور داخل العرض',
+      where: 'حدد الصورة ← تنسيق الصورة (Picture Format) ← تحرير الصورة (Edit Picture).',
+      body: 'إزالة الخلفية بنقرة، وتحسين تلقائي مع مقارنة قبل وبعد، وإضافة نص أو تأثيرات.',
+      note: 'لا تستخدم صور الأسر أو منازلها في العروض دون موافقة موثقة وفق سياسة المؤسسة.' },
+    { app: 'Word', cat: 'agent', title: 'وضع الوكيل في Word',
+      where: 'الصفحة الرئيسية ← Copilot ← الأدوات (Tools) ← وضع الوكيل (Agent mode)، واكتب «/» لإرفاق ملف مصدر.',
+      body: 'ينشئ مستنداً كاملاً من ملف مصدر وفق تعليماتك، ثم يعدّله بأوامر لاحقة: تحويل قسم إلى جدول، أو تغيير التنسيق.',
+      prompt: 'أنشئ تقرير حالة شهرياً من الملف /[اسم الملف]: صفحة عنوان، وملخص تنفيذي، ثم الأقسام بفقرات قصيرة، وجدول بالمؤشرات، وخاتمة بالخطوات التالية. بعدها حوّل قسم «التحديات» إلى جدول.' },
+    { app: 'Word', cat: 'tool', title: 'صف ما تريد صياغته ثم حسّنه',
+      where: 'مستند جديد ← «صف ما تريد صياغته» (Draft with Copilot). وبعد الكتابة: حدد فقرة ← Copilot ← إعادة كتابة، أو اختصار، أو اقتراحات.',
+      body: 'تبدأ بمسودة ثم تحسّنها بالحوار، ويمكنك العودة إلى أي نسخة سابقة. وللفقرة المحددة: أعد كتابتها، أو اختصرها، أو اطلب اقتراحات وطبّقها.',
+      prompt: 'صُغ خطاباً رسمياً إلى جمعية شريكة نطلب فيه تحديث بيانات الأسر المرشحة قبل نهاية الشهر، مع توضيح سبب الطلب وطريقة الإرسال.' },
+    { app: 'Teams', cat: 'tool', title: 'الحق باجتماع فاتتك بدايته',
+      where: 'أثناء الاجتماع أو بعده: زر Copilot. محادثتك معه خاصة بك ولا يراها الحاضرون.',
+      body: 'اسأل عمّا فاتك والمهام المسندة إليك، أو اختر من الأوامر المقترحة: تلخيص حتى الآن، الأفكار الرئيسية، إنشاء ملاحظات الاجتماع.',
+      prompt: 'لخّص ما فاتني في هذا الاجتماع، واذكر المهام المسندة إليّ ومواعيدها، وما قيل عن موعد الزيارات القادمة.',
+      note: 'يعتمد على تفعيل التفريغ النصي (Transcription) في الاجتماع.' },
+    { app: 'Teams', cat: 'tool', title: 'محادثة جماعية يشارك فيها Copilot',
+      where: 'في Copilot Chat: القائمة أعلى المحادثة ← بدء محادثة جماعية في Teams (Start a group chat)، ثم أضف زملاءك.',
+      body: 'تنتقل المحادثة بمصادرها إلى Teams، ويستطيع أي عضو أن يكتب @Copilot ليعدّل الخطة أمام الجميع.',
+      prompt: '@Copilot أضف زيارة متابعة يوم الثلاثاء لحي (س)، وأعد عرض جدول زيارات الأسبوع كاملاً مع اسم الباحث لكل زيارة.' }
+  ];
+  const CLAUDE_GROUPS = ['الأساسيات', 'الموصلات', 'الإنشاء', 'المساحات', 'الأتمتة', 'للمتقدمين'];
+  const CLAUDE_TIPS = [
+    { app: 'الأساسيات', cat: 'tool', title: 'انقل ذاكرتك من ChatGPT',
+      where: 'الإعدادات (Settings) ← القدرات (Capabilities) ← بدء الاستيراد (Start import).',
+      body: 'يعطيك Claude أمراً تلصقه في ChatGPT، فيجمع ما يعرفه عنك من تفضيلات وسياق. تلصق الناتج في Claude وتضغط «إضافة إلى الذاكرة»، فلا تبدأ من الصفر.',
+      note: 'راجع الناتج قبل لصقه، واحذف منه أي بيانات عن المستفيدين أو معلومات حساسة.' },
+    { app: 'الأساسيات', cat: 'tool', title: 'اختر النموذج المناسب للمهمة',
+      where: 'محدد النموذج أسفل مربع الكتابة: Haiku، أو Sonnet، أو Opus، أو التفكير التكيّفي (Adaptive thinking) ليختار هو.',
+      body: 'Haiku الأسرع لتلخيص كمّ كبير من المحاضر، وSonnet للمهام اليومية كصياغة الردود، وOpus للمهام المعقدة كتحليل الأنماط والمؤشرات. اختيارك بنفسك يعطيك تحكماً أكبر.' },
+    { app: 'الموصلات', cat: 'tool', title: 'اربط بريدك وابحث فيه بلغتك',
+      where: 'تخصيص (Customize) ← الموصلات (Connectors) ← اختر البريد (مثل Gmail) وسجّل الدخول.',
+      body: 'يبحث في بريدك أفضل من خانة البحث، ويلخّص المراسلات، ويصوغ الردود من داخل المحادثة.',
+      prompt: 'ابحث في بريدي عن آخر مراسلات جمعية [الاسم] بشأن الملفات الناقصة، ولخّصها في جدول: رقم الملف، والمطلوب، وتاريخ آخر رد.',
+      note: 'اربط فقط الحسابات والموصلات التي تعتمدها المؤسسة.' },
+    { app: 'الموصلات', cat: 'tool', title: 'اربط التقويم وحلّل وقتك',
+      where: 'تخصيص (Customize) ← الموصلات (Connectors) ← التقويم (مثل Google Calendar). وتتوفر موصلات أخرى مثل Google Drive وSlack وNotion.',
+      body: 'يحجز الأوقات ويجد الفراغ، والأهم أنه يحلّل وقتك: هل تصرفه على ما يحقق أهدافك؟',
+      prompt: 'أهدافي هذا الربع: رفع نسبة الملفات المكتملة، وإنهاء زيارات المتابعة في موعدها. حلّل تقويمي وبريدي للأسابيع الأربعة الماضية: هل أصرف وقتي على ما يحقق هذين الهدفين؟ اقترح ثلاثة تعديلات عملية.' },
+    { app: 'الإنشاء', cat: 'tool', title: 'Artifacts: تطبيقات صغيرة داخل المحادثة',
+      where: 'اطلب مباشرة: «ابنِ لي…». يظهر الناتج في لوحة جانبية تتفاعل معها وتعدّلها.',
+      body: 'لم تعد المحادثة سؤالاً وجواباً فقط؛ صرت تبني أدوات تعمل: جداول تفاعلية، وحاسبات، ونماذج.',
+      prompt: 'ابنِ لي جدول متابعة تفاعلياً ببيانات وهمية لعشر أسر: الحي، والباحث، وحالة الملف، وتاريخ آخر زيارة. اجعل الأعمدة قابلة للتعديل، وأضف تصفية حسب الحالة.' },
+    { app: 'الإنشاء', cat: 'tool', title: 'مرئيات تفاعلية تشرح أي فكرة',
+      where: 'قل: «اشرح هذا بشكل مرئي» أو «Visualize this».',
+      body: 'يبني رسماً تفاعلياً تضغط على أجزائه لتعرف التفاصيل، وهو تعلّم مُسرَّع لك ولزملائك الجدد.',
+      prompt: 'اشرح رحلة الأسرة من استقبال الطلب حتى المتابعة بعد التسكين في رسم تفاعلي، أضغط على كل مرحلة فيه لأرى المسؤول عنها ومدتها المعتادة ووثائقها.' },
+    { app: 'المساحات', cat: 'tool', title: 'المشاريع: مجلد محمّل بالسياق',
+      where: 'القائمة الجانبية ← المشاريع (Projects) ← مشروع جديد. أضف المستندات في المعرفة (Knowledge)، وضع برومبت النظام في التعليمات (Instructions).',
+      body: 'كل محادثة داخل المشروع تعرف مرجعياتك: الأدلة والقوالب والسياسات. وفي حسابات الفرق يمكنك دعوة زملائك ليعملوا في المكان نفسه. هنا يعيش «برومبت النظام» من القسم السادس.',
+      prompt: 'هذا مشروع «تقارير الزيارات». ارجع إلى دليل البحث الاجتماعي والقالب المرفقين في المعرفة، وحوّل ملاحظاتي التالية إلى تقرير وفقهما:' },
+    { app: 'الأساسيات', cat: 'tool', title: 'تكلّم بدل أن تكتب',
+      where: 'على الحاسب: أيقونة الموجة الصوتية في شريط الكتابة. وعلى الجوال: زر الميكروفون.',
+      body: 'تتكلم أسرع ثلاث مرات مما تكتب، حتى لو كانت أفكارك مبعثرة، ويُفرَّغ الحديث نصاً تستخدمه لاحقاً. مثال: أملِ انطباعاتك بعد الزيارة ثم اطلب ترتيبها.',
+      note: 'لا تذكر أسماء الأسر أو أي بيانات تعرّف بها.' },
+    { app: 'الأتمتة', cat: 'agent', title: 'Claude في متصفح Chrome',
+      where: 'ثبّت إضافة Claude for Chrome من متجر Chrome الإلكتروني.',
+      body: 'يعمل داخل متصفحك: يقرأ الصفحة، ويضغط الأزرار، ويستخرج الملاحظات من الجداول، وينجز ما كنت ستفعله بيدك.',
+      note: 'لا تستخدمه على أنظمة المؤسسة أو صفحات بيانات المستفيدين دون موافقة تقنية المعلومات.' },
+    { app: 'الأتمتة', cat: 'agent', title: 'Cowork: ينجز العمل على حاسبك',
+      where: 'تطبيق Claude لسطح المكتب ← Cowork، مع تفعيل استخدام الحاسب (Computer use) من الإعدادات.',
+      body: 'تصف المهمة وخطواتها فيقسّمها وينفّذها خطوة خطوة على جهازك، بينما تنشغل بغيرها.',
+      prompt: 'اجمع أعداد الحالات للشهر الماضي من ملف Excel المشترك، وابنِ مخططاً ملخصاً في ملف جديد، وجهّز مسودة بريد للفريق بالنتائج، ولا ترسلها قبل أن أراجعها.' },
+    { app: 'الأتمتة', cat: 'agent', title: 'مهام مجدولة كل يوم',
+      where: 'داخل Cowork اكتب ‎/schedule‎ بعد وصف المهمة. تعمل في موعدها ما دام الحاسب يعمل.',
+      body: 'ما تفعله كل صباح حين تجلس إلى حاسبك يمكن أن يُنجز قبل وصولك. وهي فكرة «جدولة الأوامر» نفسها في Copilot (النصيحة 3).',
+      prompt: 'كل يوم أحد الساعة 8 صباحاً: اقرأ بريدي، ولخّص ما هو عاجل، وذكّرني بزيارات المتابعة المتأخرة هذا الأسبوع.' },
+    { app: 'الأتمتة', cat: 'agent', title: 'Dispatch: أرسل المهمة من جوالك',
+      where: 'Cowork ← Dispatch ← امسح رمز QR بكاميرا الجوال لتثبيت التطبيق وربطه بحاسبك.',
+      body: 'تتذكر مهمة وأنت خارج المكتب؟ ترسلها من جوالك، فينفّذها Claude على حاسبك.' },
+    { app: 'للمتقدمين', cat: 'agent', title: 'Claude Code: ابنِ أدواتك بلغتك',
+      where: 'داخل تطبيق Claude، أو في الطرفية (Terminal). ولدى Anthropic دليل إعداد كامل.',
+      body: 'مطوّر برمجيات تخاطبه بلغة عادية: يبني لوحات متابعة وأدوات داخلية دون أن تتعلم البرمجة. هذه الصفحة نفسها بُنيت بـ Claude Code.' },
+    { app: 'للمتقدمين', cat: 'agent', title: 'Channels: كلّم Claude Code من تطبيقات المراسلة',
+      where: 'أنشئ بوتاً في Telegram أو Discord أو iMessage، واربطه بـ Claude Code في الطرفية، ثم أعدّ مفاتيح API والمهارات.',
+      body: 'توجّه Claude Code وتتابع عمله من أي مكان، ما دام حاسبك يعمل.',
+      note: 'إعداد تقني يحتاج تنسيقاً مع تقنية المعلومات، ولا يصلح لبيانات المستفيدين دون اعتماد.' },
+    { app: 'المساحات', cat: 'tool', title: 'المهارات: درّبه على مهمة تتكرر',
+      where: 'تخصيص (Customize) ← المهارات (Skills) ← تصفّح وثبّت، أو أنشئ مهارتك. وبعد عمل ناجح قل: «حوّل هذا إلى مهارة».',
+      body: 'المهارة تجعله ينفّذ المهمة بالطريقة نفسها كل مرة. وتوجد مهارات جاهزة للشؤون القانونية والمالية والموارد البشرية.',
+      prompt: 'حوّل طريقة كتابة تقرير الزيارة التي اتفقنا عليها في هذه المحادثة إلى مهارة، بالأقسام نفسها وقاعدة [غير متوفر] لما ينقص.',
+      note: 'ثبّت المهارات من مصادر موثوقة فقط، وراجع ما تفعله قبل استخدامها.' },
+    { app: 'الإنشاء', cat: 'tool', title: 'Claude Design: صمّم دون أن تكون مصمماً',
+      where: 'claude.ai/design، ثم صف ما تريد. يمكنك إرفاق دليل الهوية وأمثلة ليطابقها.',
+      body: 'عروض، وصفحات تعريفية، ونماذج أولية لتطبيقات، في دقائق. قد لا يكون الناتج نهائياً، لكنه يوصلك إلى مسودة قوية بسرعة.',
+      prompt: 'صمّم صفحة واحدة تشرح للأسر خطوات التقديم على برنامج الإسكان بلغة بسيطة ورسوم توضيحية، بألوان دليل الهوية المرفق.' }
+  ];
+
+  function makeGallery(rootSel, tips, groups, key) {
+    const root = $(rootSel);
+    let filter = store.get(key + '-filter', 'all');
+    if (filter !== 'all' && !groups.includes(filter)) filter = 'all';
+    function render() {
+      const done = store.get(key + '-done', {});
+      const count = tips.filter((_, i) => done[i]).length;
+      $('.tips-progress', root).textContent = `جرّبت ${count} من ${tips.length}`;
+      $('.tips-filters', root).replaceChildren(...['all', ...groups].map(a => el('button', {
+        type: 'button', class: 'btn btn-secondary btn-sm', 'aria-pressed': String(filter === a),
+        onclick: () => { filter = a; store.set(key + '-filter', a); render(); }
+      }, el('span', { text: a === 'all' ? 'الكل' : a }))));
+      const cards = [];
+      tips.forEach((t, i) => {
+        if (filter !== 'all' && t.app !== filter) return;
+        const id = key + '-prompt-' + i;
+        const card = el('article', { class: 'card tip-card ' + (t.cat === 'agent' ? 'c-navy' : 'c-tool') + (done[i] ? ' done' : '') });
+        card.append(el('div', { class: 'tip-top' }, [
+          el('span', { class: 'tip-num', text: String(i + 1) }),
+          el('span', { class: 'tip-app', text: t.app }),
+          el('span', { class: 'badge ' + t.cat }, [icon(t.cat), el('span', { text: t.cat === 'agent' ? 'وكيل' : 'أداة' })])
+        ]));
+        card.append(el('h4', { text: t.title }));
+        card.append(el('p', { class: 'tip-where' }, [el('strong', { text: 'أين؟ ' }), el('span', { text: t.where })]));
+        card.append(el('p', { style: 'margin:0', text: t.body }));
+        if (t.prompt) {
+          card.append(el('p', { class: 'prompt-label', text: 'جرّب' }));
+          card.append(el('div', { class: 'prompt-box', id, dir: t.prompt.startsWith('=') ? 'ltr' : 'rtl', text: t.prompt }));
+          card.append(el('div', { class: 'copy-row' }, [
+            el('span', { class: 'copy-status', id: id + '-status', 'aria-live': 'polite' }),
+            el('button', { type: 'button', class: 'btn btn-teal btn-sm', 'data-copy-target': id }, [icon('copy'), el('span', { text: 'نسخ' })])
+          ]));
+        }
+        if (t.note) card.append(el('p', { class: 'tip-note', text: t.note }));
+        const cb = el('input', { type: 'checkbox' });
+        cb.checked = !!done[i];
+        cb.addEventListener('change', () => {
+          const d = store.get(key + '-done', {});
+          if (cb.checked) d[i] = 1; else delete d[i];
+          store.set(key + '-done', d);
+          render();
+          const again = $$('.tip-card', root).find(c => c.querySelector('.tip-num').textContent === String(i + 1));
+          if (again) again.querySelector('input[type=checkbox]').focus();
+        });
+        card.append(el('label', { class: 'check-row' }, [cb, el('span', { text: 'جرّبتها' })]));
+        cards.push(card);
+      });
+      $('.tips-grid', root).replaceChildren(...cards);
+    }
+    render();
+  }
+  makeGallery('#tips', TIPS, TIP_APPS, 'tips');
+  makeGallery('#claude-tips', CLAUDE_TIPS, CLAUDE_GROUPS, 'claude-tips');
 
   /* ---------- 4) مؤقت الاستراحة ---------- */
   const breakTimer = createTimer({
