@@ -35,6 +35,3 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
-
-# CFBA summaries site ships its prebuilt bundle (Netlify only runs Hugo)
-!static/cfba/*.zip
