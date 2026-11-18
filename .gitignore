@@ -35,3 +35,6 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# Workshop source documents (not for publishing)
+_workshop-docs/
